@@ -20,4 +20,4 @@ if [ "$current_branch" == "$to_merge" ]; then
     exit
 fi
 
-git checkout $to_merge && git pull && git checkout $current_branch && git merge $to_merge && git push
+git checkout $to_merge && git pull && git checkout $current_branch && git merge --no-edit $to_merge && git push
