@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 const { execSync } = require("child_process");
 
 const v = process.version.split(".")[0];

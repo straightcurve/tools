@@ -1,20 +1,44 @@
 [ "$UID" -eq 0 ] || exec sudo bash "$0" "$@"
 
-merge_branch="merge_branch"
-src="$merge_branch.sh"
-dest="/usr/bin/$merge_branch"
+bash_tools=('merge_branch')
+js_tools=('delete_branches')
 
-msg=""
+for tool in "${bash_tools[@]}"
+do
+    src="$tool.sh"
+    dest="/usr/bin/$tool"
+    msg=""
 
-if test -f "$dest"; then
-    msg="Updated"
+    if test -f "$dest"; then
+        msg="Updated"
 
-    sudo rm $dest
-else
-    msg="Installed"
-fi
+        sudo rm $dest
+    else
+        msg="Installed"
+    fi
 
-sudo cp $src $dest
-sudo chmod +x $dest
+    sudo cp $src $dest
+    sudo chmod +x $dest
 
-echo $msg $dest
+    echo $msg $dest
+done
+
+for tool in "${js_tools[@]}"
+do
+    src="$tool.js"
+    dest="/usr/bin/$tool"
+    msg=""
+
+    if test -f "$dest"; then
+        msg="Updated"
+
+        sudo rm $dest
+    else
+        msg="Installed"
+    fi
+
+    sudo cp $src $dest
+    sudo chmod +x $dest
+
+    echo $msg $dest
+done
