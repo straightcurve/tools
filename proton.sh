@@ -4,4 +4,4 @@ then
     exit
 fi
 
-/home/tony/.steam/steam/steamapps/common/Proton 5.0/proton run $1
+"/home/tony/.steam/steam/steamapps/common/Proton 5.0/proton" run $1
