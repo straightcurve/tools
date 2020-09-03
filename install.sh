@@ -1,7 +1,7 @@
 [ "$UID" -eq 0 ] || exec sudo bash "$0" "$@"
 
 bash_tools=('merge_branch' 'proton')
-js_tools=('delete_branches' 'ngjs.js')
+js_tools=('delete_branches' 'ngjs')
 
 for tool in "${bash_tools[@]}"
 do
