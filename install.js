@@ -23,7 +23,6 @@ scripts.forEach(s => {
     else
         op = "[ INSTALLED ]";
     
-    execSync(`pwd`);
     execSync(`cp ${src} ${dest}`);
     execSync(`chmod +x ${dest}`);
 
