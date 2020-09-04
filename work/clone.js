@@ -10,4 +10,10 @@ if(!isAtLeastVersion(6)) {
 const { execSync } = require("child_process");
 const config = require("./config.json");
 
-config.projects.forEach(p => execSync(`git clone ${p.repository}`));
+config.projects.forEach(p => {
+    try {
+        execSync(`git clone ${p.repository}`)
+    } catch(ex) {
+        
+    }
+});
