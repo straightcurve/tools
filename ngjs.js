@@ -17,11 +17,19 @@ types.set("service", service);
 types.set("f", factory);
 types.set("factory", factory);
 
+const filenameDenominator = new Map();
+filenameDenominator.set("c", "controller");
+filenameDenominator.set("controller", "controller");
+filenameDenominator.set("f", "factory");
+filenameDenominator.set("factory", "service");
+filenameDenominator.set("s", "service");
+filenameDenominator.set("service", "service");
+
 function getFilenameAndParentDir(path) {
 	let split = path.split("/");
 	return {
 		filename: split[split.length - 1],
-        dir: split.slice(1, split.length).join("/"),
+        dir: split.slice(0, split.length - 1).join("/"),
         path: path,
 	};
 }
@@ -79,6 +87,7 @@ class GenerateCommand {
 
         let toWrite = type(pathInput.filename);
 
+        console.log(pathInput)
         if(pathInput.dir.length > 0) {
             let exists = existsSync(pathInput.dir);
             if(exists && !statSync(pathInput.dir).isDirectory())
@@ -87,14 +96,8 @@ class GenerateCommand {
                 mkdirSync(pathInput.dir, { recursive: true, });
         }
 
-        let split = pathInput.path.split(".");
-        let extension = split.length === 1
-            ? null
-            : split[split.length - 1];
-        if(!extension) {
-            extension = ".js";
-            pathInput.path += extension;
-        }
+        pathInput.filename += `.${filenameDenominator.get(args[0])}.js`;
+        pathInput.path += `.${filenameDenominator.get(args[0])}.js`;
 
         if(!existsSync(pathInput.path))
             writeFileSync(pathInput.path, toWrite);
