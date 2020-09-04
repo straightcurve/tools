@@ -1,5 +1,3 @@
-#!/usr/bin/env node
-
 const { isAtLeastVersion } = require("../check_min_node_version");
 
 if(!isAtLeastVersion(6)) {
@@ -24,45 +22,27 @@ config.projects
 .forEach(p => {
     console.log(``);
     console.log(`${p} -> ${branch}`);
-
-    cd(p);
-    checkout(p);
-    pull();
-
+    let command = `${cd(p)} && ${checkout(branch)} && ${pull()}`;
+    
     if(installDeps)
-        install();
-
-    cd(`..`);
+        command += ` && ${install()}`;
+    
+    command += ` && ${cd("..")}`;
+    execSync(command, {cwd: process.cwd()});
 });
 
 function cd(dir) {
-    try {
-        execSync(`cd ${dir}`);
-    } catch(ex) {
-        console.error(`${dir} is not a directory.`);
-    }
+    return `cd ${dir}`;
 }
 
 function checkout(branch) {
-    try {
-        execSync(`git checkout ${branch}`);
-    } catch(ex) {
-        console.error(`not a git repository or the "${branch}" branch doesn't exist.`);
-    }
+    return `git checkout ${branch}`;
 }
 
 function pull() {
-    try {
-        execSync(`git pull`);
-    } catch(ex) {
-        console.error(`not a git repository.`);
-    }
+    return `git pull`;
 }
 
 function install() {
-    try {
-        execSync(`npm i`);
-    } catch(ex) {
-        console.error(ex);
-    }
+    return `npm i`;
 }

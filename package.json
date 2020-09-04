@@ -1,0 +1,27 @@
+{
+  "name": "tools",
+  "version": "1.0.0",
+  "description": "This repository contains scripts I made to make my life easier when working.",
+  "main": "check_min_node_version.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "private": true,
+  "browser": {
+    "child_process": false
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/straightcurve/work-tools.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/straightcurve/work-tools/issues"
+  },
+  "homepage": "https://github.com/straightcurve/work-tools#readme",
+  "dependencies": {
+    "pkg": "^4.4.9"
+  }
+}

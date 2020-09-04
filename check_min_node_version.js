@@ -1,5 +1,3 @@
-#!/usr/bin/env node
-
 const v = process.version.split(".")[0];
 const version = Number.parseInt(v.slice(1, v.length));
 
