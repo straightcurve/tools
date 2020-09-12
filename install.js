@@ -29,12 +29,12 @@ async function yikes() {
         
         if(s.extension === "js") {
             await pkg([src, "--targets", "node6-linux-x64"]);
-            execSync(`cp ${s.name} ${dest}`);
+            execSync(`sudo cp ${s.name} ${dest}`);
         }
         else 
-            execSync(`cp ${src} ${dest}`);
+            execSync(`sudo cp ${src} ${dest}`);
     
-        execSync(`chmod +x ${dest}`);
+        execSync(`sudo chmod +x ${dest}`);
     
         console.log(`${op} ${dest}`);
 
