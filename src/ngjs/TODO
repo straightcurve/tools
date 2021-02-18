@@ -1,0 +1,5 @@
+Features:
+    ☐ Support dashes (-) in filenames
+
+Fixes:
+    ☐ Abstract the template types implementations
