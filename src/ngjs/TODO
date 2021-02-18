@@ -1,5 +1,6 @@
 Features:
     ☐ Support dashes (-) in filenames
+    ☐ Generating a directive should also generate a controller and an HTML template in the same directory
 
 Fixes:
     ☐ Abstract the template types implementations
