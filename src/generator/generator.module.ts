@@ -5,7 +5,6 @@
 import { execSync } from "child_process";
 import { writeFileSync } from "fs";
 import { isAbsolute, join } from "path";
-import { exit } from "process";
 import generate from "./src/generate";
 import rec_scan_files from "./src/rec_scan_files";
 
@@ -54,10 +53,8 @@ let scripts = modules.map(generate).filter((s) => {
     return included && !excluded;
 });
 
-if (scripts.length === 0) {
+if (scripts.length === 0)
     console.log(`No scripts found that match criteria.`);
-    exit(0);
-}
 
 console.log(`Writing script configuration to ${out_file}`);
 
