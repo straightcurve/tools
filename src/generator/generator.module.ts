@@ -9,8 +9,8 @@ import { exit } from "process";
 import generate from "./src/generate";
 import rec_scan_files from "./src/rec_scan_files";
 
-let exclude: string[] = [];
-let include: string[] = ["generator"];
+let exclude: string[] = ["installer", "generator"];
+let include: string[] = [];
 let out_file: string = "scripts.json";
 if (!isAbsolute(out_file))
     out_file = join(__dirname, out_file);
@@ -30,10 +30,28 @@ let modules = rec_scan_files(join(__dirname, "../"), (f) =>
     f.endsWith(".module.js")
 );
 
-console.log("Found modules:\n", ...modules.map((m) => `\t${m}`));
+console.log("Found modules:\n", ...modules.map((m) => `\n\t${m}`));
+console.log();
 
 let scripts = modules.map(generate).filter((s) => {
-    return include.includes(s.name) && !exclude.includes(s.name);
+    let included = include.includes(s.name);
+    let excluded = exclude.includes(s.name);
+
+    if (include.length === 0) {
+        if (exclude.length === 0)
+            return true;
+
+        return !excluded;
+    }
+
+    if (exclude.length === 0) {
+        if (include.length === 0)
+            return true;
+
+        return included;
+    }   
+
+    return included && !excluded;
 });
 
 if (scripts.length === 0) {
