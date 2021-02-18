@@ -10,7 +10,7 @@ if(!isAtLeastVersion(6)) {
 
 const { copyFileSync, existsSync, unlinkSync } = require("fs");
 const { execSync } = require("child_process");
-const scripts = require("./scripts.json");
+const scripts = require("../scripts.json");
 
 async function yikes() {
 
@@ -28,7 +28,8 @@ async function yikes() {
             op = "[ INSTALLED ]";
         
         if(s.extension === "js") {
-            await pkg([src, "--targets", "node6-linux-x64"]);
+            await pkg([src, "--targets", "node6-linux-x64", "node6-macos-x64", "node6-win-x64"]);
+
             execSync(`sudo cp ${s.name} ${dest}`);
         }
         else 

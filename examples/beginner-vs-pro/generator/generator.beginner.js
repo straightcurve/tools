@@ -1,12 +1,5 @@
 #!/usr/bin/env node
 
-const { isAtLeastVersion } = require("./check_min_node_version");
-
-if(!isAtLeastVersion(6)) {
-    console.error(`You need at least node v6 to run this script, current is ${process.version}`);
-    process.exit(1);
-}
-
 class Script {
     constructor(fullPath) {
         let split = fullPath.split("/");
@@ -19,6 +12,7 @@ class Script {
     }
 }
 
+//  change to included scripts instead
 const excludedScripts = [
     "./check_min_node_version.js",
     "./generate_scripts.js",

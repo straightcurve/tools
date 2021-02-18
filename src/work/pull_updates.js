@@ -22,7 +22,7 @@ config.projects
 .forEach(p => {
     console.log(``);
     console.log(`${p} -> ${branch}`);
-    let command = `${cd(p)} && ${checkout(branch)} && ${pull()}`;
+    let command = `${mkdir(p) && cd(p)} && ${checkout(branch)} && ${pull()}`;
     
     if(installDeps)
         command += ` && ${install()}`;
@@ -30,6 +30,10 @@ config.projects
     command += ` && ${cd("..")}`;
     execSync(command, {cwd: process.cwd()});
 });
+
+function mkdir(dir) {
+    return `mkdir -p ${dir}`;
+}
 
 function cd(dir) {
     return `cd ${dir}`;

@@ -32,5 +32,6 @@ writeFileSync("./work/config.json", JSON.stringify({
         new Project("learn_service"),
         new Project("learn_service2"),
         new Project("stream_service"),
+        new Project("communities_service"),
     ],
 }, null, 4));
