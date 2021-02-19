@@ -1,6 +1,6 @@
 
 import { join } from "path";
-import { BaseStructure, BaseStructureOptions, capitalize, to_angular_js_identifier } from "./structure";
+import Structure, { BaseStructure, BaseStructureOptions, capitalize, to_angular_js_identifier } from "./structure";
 
 export interface ControllerOptions extends BaseStructureOptions {
     path: string,
@@ -58,6 +58,12 @@ export default class Controller extends BaseStructure {
 
     public static from(args: string[]): Controller {
         return new Controller(Controller.parse(args));
+    }
+
+    public static generate(args: string[]): Structure[] {
+        let controller = Controller.from(args);
+    
+        return [controller];
     }
 
     constructor(args: ControllerOptions) {

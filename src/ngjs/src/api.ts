@@ -1,6 +1,6 @@
 
 import { join } from "path";
-import { BaseStructure, BaseStructureOptions, capitalize, to_angular_js_identifier } from "./structure";
+import Structure, { BaseStructure, BaseStructureOptions, capitalize, to_angular_js_identifier } from "./structure";
 
 export interface APIOptions extends BaseStructureOptions {
     path: string,
@@ -51,6 +51,12 @@ export default class API extends BaseStructure {
 
     public static from(args: string[]): API {
         return new API(API.parse(args));
+    }
+
+    public static generate(args: string[]): Structure[] {
+        let api = API.from(args);
+    
+        return [api];
     }
 
     constructor(args: APIOptions) {

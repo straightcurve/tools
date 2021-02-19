@@ -1,6 +1,6 @@
 
 import { join } from "path";
-import { BaseStructure, BaseStructureOptions, capitalize, to_angular_js_identifier } from "./structure";
+import Structure, { BaseStructure, BaseStructureOptions, capitalize, to_angular_js_identifier } from "./structure";
 
 export interface DirectiveOptions extends BaseStructureOptions {
     path: string,
@@ -58,6 +58,12 @@ export default class Directive extends BaseStructure {
 
     public static from(args: string[]): Directive {
         return new Directive(Directive.parse(args));
+    }
+
+    public static generate(args: string[]): Structure[] {
+        let directive = Directive.from(args);
+    
+        return [directive];
     }
 
     constructor(args: DirectiveOptions) {

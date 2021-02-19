@@ -1,6 +1,6 @@
 
 import { join } from "path";
-import { BaseStructure, BaseStructureOptions } from "./structure";
+import Structure, { BaseStructure, BaseStructureOptions } from "./structure";
 
 export interface ViewOptions extends BaseStructureOptions {
     path: string,
@@ -63,6 +63,12 @@ export default class View extends BaseStructure {
 
     public static from(args: string[]): View {
         return new View(View.parse(args));
+    }
+
+    public static generate(args: string[]): Structure[] {
+        let view = View.from(args);
+    
+        return [view];
     }
 
     constructor(args: ViewOptions) {
