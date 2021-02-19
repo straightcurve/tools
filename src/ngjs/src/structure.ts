@@ -50,17 +50,14 @@ export abstract class BaseStructure {
      */
     public name: string;
 
-    constructor(args: BaseStructureOptions) {
-        this.name = args.path.slice(args.path.lastIndexOf("/") + 1);
-        if (this.name.endsWith(".js"))
-            this.name = this.name.slice(0, this.name.lastIndexOf(".js"));
+    public abstract get template(): string;
 
+    constructor(args: BaseStructureOptions) {
+        this.name = this.compute_name(args.path.slice(args.path.lastIndexOf("/") + 1));
         this.namespace = args.namespace || "__app";
         this.version = args.version;
         this.folder_path = this.compute_folder_path(args.path);
     }
-
-    public abstract get template(): string;
 
     protected compute_folder_path(path: string): string {
         if (!path.includes("/"))
@@ -70,6 +67,13 @@ export abstract class BaseStructure {
             return path.slice(0, path.lastIndexOf("/"));
 
         return join(__dirname, path.slice(0, path.lastIndexOf("/")));
+    }
+
+    protected compute_name(name: string): string {
+        if (name.endsWith(".js"))
+            name = name.slice(0, name.lastIndexOf(".js"));
+
+        return name;
     }
 
     /**

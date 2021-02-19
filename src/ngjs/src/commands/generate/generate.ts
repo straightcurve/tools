@@ -4,16 +4,51 @@ import Data from "../../data";
 import Directive from "../../directive";
 import Service from "../../service";
 import Structure from "../../structure";
+import View from "../../view";
 
-let builders = new Map<string, (args: string[]) => Structure>();
-builders.set("c", Directive.from);
-builders.set("component", Directive.from);
-builders.set("s", Service.from);
-builders.set("service", Service.from);
-builders.set("d", Data.from);
-builders.set("data", Data.from);
-builders.set("a", API.from);
-builders.set("api", API.from);
+let builders = new Map<string, (args: string[]) => Structure[]>();
+builders.set("c", (args) => {
+    let directive = Directive.from(args);
+    let html = View.from([directive.folder_path]);
+
+    return [directive, html];
+});
+builders.set("component", (args) => {
+    let directive = Directive.from(args);
+    let html = View.from([directive.folder_path]);
+
+    return [directive, html];
+});
+builders.set("s", (args) => {
+    let service = Service.from(args);
+
+    return [service];
+});
+builders.set("service", (args) => {
+    let service = Service.from(args);
+
+    return [service];
+});
+builders.set("d", (args) => {
+    let data = Data.from(args);
+
+    return [data];
+});
+builders.set("data", (args) => {
+    let data = Data.from(args);
+
+    return [data];
+});
+builders.set("a", (args) => {
+    let api = API.from(args);
+
+    return [api];
+});
+builders.set("api", (args) => {
+    let api = API.from(args);
+
+    return [api];
+});
 
 const denominators = new Map<string, string>();
 denominators.set("c", "controller");
@@ -25,7 +60,7 @@ denominators.set("api", "api");
 denominators.set("d", "");
 denominators.set("data", "");
 
-export default function generate(args: string[]): Structure {
+export default function generate(args: string[]): Structure[] {
     if (args.length < 2)
         throw new Error(
             `Expected arguments: (type, path)\nSupplied arguments: (${
