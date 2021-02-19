@@ -34,11 +34,12 @@ function display_help() {
         ngjs [command] [...options]
 
     Command:
-        (g | generate)
+        (g   | generate)
     Options:
-        (c | controller)
-        (s | service)
-        (d | data)
-        (a | api)   -v [ version = default(1) ]
+        (c   | component)
+        (s   | service)
+        (d   | data)
+        (a   | api)         -v [ version = default(1) ]
+        (dir | directive)
     `);
 }

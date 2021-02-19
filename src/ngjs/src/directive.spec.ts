@@ -11,20 +11,12 @@ describe("generate directive structure", () => {
         assert.equal(Directive.from(["hello"]).folder_path, join(__dirname, "hello"));
     });
 
-    it("should return absolute html path", () => {
-        assert.equal(Directive.from(["hello"]).html_path, join(__dirname, "hello", "hello.html"));
-    });
-
-    it("should return relative to `public` directory html path", () => {
-        assert.equal(Directive.from(["../test/public/hello"]).html_path, join("hello", "hello.html"));
-    });
-
     it("should set proper name if it ends with .js", () => {
         let impl = Directive.from([join("../test", "zxc.js"), "-v", "1"]);
 
         assert.equal(impl.name, "zxc");
-        assert.equal(impl.filename, "zxc.component.js");
-        assert.equal(impl.path, join(__dirname, "../test/zxc", "zxc.component.js"));
+        assert.equal(impl.filename, "zxc.directive.js");
+        assert.equal(impl.path, join(__dirname, "../test/zxc", "zxc.directive.js"));
         assert.equal(impl.folder_path, join(__dirname, "../test/zxc"));
     });
 
@@ -32,8 +24,8 @@ describe("generate directive structure", () => {
         let impl = Directive.from([join("../test", "zxc"), "-v", "1"]);
 
         assert.equal(impl.name, "zxc");
-        assert.equal(impl.filename, "zxc.component.js");
-        assert.equal(impl.path, join(__dirname, "../test/zxc", "zxc.component.js"));
+        assert.equal(impl.filename, "zxc.directive.js");
+        assert.equal(impl.path, join(__dirname, "../test/zxc", "zxc.directive.js"));
         assert.equal(impl.folder_path, join(__dirname, "../test/zxc"));
     });
 
@@ -41,8 +33,8 @@ describe("generate directive structure", () => {
         let impl = Directive.from([join("../test", "zxc"), "-v", "4"]);
 
         assert.equal(impl.name, "zxc");
-        assert.equal(impl.filename, "zxc.component.js");
-        assert.equal(impl.path, join(__dirname, "../test/zxc", "zxc.component.js"));
+        assert.equal(impl.filename, "zxc.directive.js");
+        assert.equal(impl.path, join(__dirname, "../test/zxc", "zxc.directive.js"));
         assert.equal(impl.folder_path, join(__dirname, "../test/zxc"));
     });
 
@@ -50,8 +42,8 @@ describe("generate directive structure", () => {
         let impl = Directive.from([join("../test", "zxc/xyz"), "-v", "1"]);
 
         assert.equal(impl.name, "xyz");
-        assert.equal(impl.filename, "xyz.component.js");
-        assert.equal(impl.path, join(__dirname, "../test/zxc/xyz", "xyz.component.js"));
+        assert.equal(impl.filename, "xyz.directive.js");
+        assert.equal(impl.path, join(__dirname, "../test/zxc/xyz", "xyz.directive.js"));
         assert.equal(impl.folder_path, join(__dirname, "../test/zxc/xyz"));
     });
 
@@ -59,8 +51,8 @@ describe("generate directive structure", () => {
         let impl = Directive.from([join("../test", "zxc/xyz"), "-v", "4"]);
 
         assert.equal(impl.name, "xyz");
-        assert.equal(impl.filename, "xyz.component.js");
-        assert.equal(impl.path, join(__dirname, "../test/zxc/xyz", "xyz.component.js"));
+        assert.equal(impl.filename, "xyz.directive.js");
+        assert.equal(impl.path, join(__dirname, "../test/zxc/xyz", "xyz.directive.js"));
         assert.equal(impl.folder_path, join(__dirname, "../test/zxc/xyz"));
     });
 });

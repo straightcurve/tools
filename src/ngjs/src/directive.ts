@@ -12,13 +12,9 @@ export default class Directive extends BaseStructure {
 
     /**
      * the name the file is going to be saved as
-     * @description
-     * the reason for this filename is for easily changing
-     * them into components when we upgrade to v1.5+
-     * @returns - `@name.component.js`
      */
     public get filename(): string {
-        return `${this.name}.component.js`;
+        return `${this.name}.directive.js`;
     }
 
     /**
@@ -72,21 +68,7 @@ export default class Directive extends BaseStructure {
         return get_template()
             .replace(/0__namespace/g, this.namespace)
             .replace(/__directive_capitalized/g, this.capitalized_name)
-            .replace(/__directive_camel_case/g, to_camel_case(this.name))
-            .replace(/__directive_html_path/g, this.html_path);
-    }
-
-    /**
-     * @returns `/root/hello` => `/root/hello/hello.html`
-     * @returns `/root/public/hello` => `hello/hello.html`
-     */
-    public get html_path(): string {
-        const _public = "/public/"; 
-
-        if (!this.folder_path.includes(_public))
-            return join(this.folder_path, `${this.name}.html`);
-
-        return join(this.folder_path.slice(this.folder_path.indexOf(_public) + _public.length), `${this.name}.html`);
+            .replace(/__directive_camel_case/g, to_camel_case(this.name));
     }
 
     protected compute_folder_path(path: string): string {
@@ -100,16 +82,16 @@ function get_template() {
 (function () {
     function __directive_capitalized($rootScope) {
         var directive = {
-            restrict: "E",
-            replace: true,
-            scope: {
-                options: "=__directive_camel_caseOptions",
-            },
-            controller: "__directive_capitalizedCtrl",
-            templateUrl: "__directive_html_path",
-            controllerAs: "__directive_camel_caseCtrl",
-            bindToController: true,
+            restrict: "A",
+            scope: false,
+            link: link,
         };
+
+        function link() {
+            //  implementation goes here
+            
+        }
+
         return directive;
     }
 

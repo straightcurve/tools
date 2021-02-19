@@ -100,6 +100,8 @@ function get_template() {
             replace: true,
             scope: {
                 options: "=__component_camel_caseOptions",
+
+                //  bindings go here
             },
             controller: "__component_capitalizedCtrl",
             templateUrl: "__component_html_path",

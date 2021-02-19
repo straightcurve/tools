@@ -3,6 +3,7 @@ import API from "../../api";
 import Component from "../../component";
 import Controller from "../../controller";
 import Data from "../../data";
+import Directive from "../../directive";
 import Service from "../../service";
 import Structure from "../../structure";
 import View from "../../view";
@@ -52,6 +53,16 @@ builders.set("api", (args) => {
 
     return [api];
 });
+builders.set("dir", (args) => {
+    let directive = Directive.from(args);
+
+    return [directive];
+});
+builders.set("directive", (args) => {
+    let directive = Directive.from(args);
+
+    return [directive];
+});
 
 export default function generate(args: string[]): Structure[] {
     if (args.length < 2)
@@ -65,12 +76,12 @@ export default function generate(args: string[]): Structure[] {
     let build = builders.get(type);
     if (build === undefined)
         throw new Error(
-            `Unknown type ${type}\nSupported types: (api | controller | data | service)`
+            `Unknown type ${type}\nSupported types: (api | component | data | directive | service)`
         );
 
     if (isAbsolute(path))
         throw new Error(
-            `Invalid path ${path}\nSpecify relative path or template name`
+            `Invalid path ${path}\nSpecify relative path or file name`
         );
 
     return build(args.slice(1));
