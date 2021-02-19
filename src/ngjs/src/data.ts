@@ -71,19 +71,17 @@ export default class Data extends BaseStructure {
 function get_template() {
     return `
 "use strict";
-var 0__namespace;
-(function (0__namespace) {
+(function () {
     var 0__data = /** @class */ (function () {
         function 0__data($rootScope) {
+            //  implementation goes here
+            
         }
-
-        //  implementation goes here
 
         return 0__data;
     }());
-    0__namespace.0__data = 0__data;
 
     angular.module("app").factory("0__data", 0__data);
-})(0__namespace || (0__namespace = {}));
-    `.trim();
+})());
+`.trimLeft();
 }

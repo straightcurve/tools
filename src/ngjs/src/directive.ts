@@ -97,8 +97,7 @@ export default class Directive extends BaseStructure {
 function get_template() {
     return `
 "use strict";
-var 0__namespace;
-(function (0__namespace) {
+(function () {
     function __directive_capitalized($rootScope) {
         var directive = {
             restrict: "E",
@@ -114,9 +113,7 @@ var 0__namespace;
         return directive;
     }
 
-    0__namespace.__directive_capitalized = __directive_capitalized;
-
     angular.module("app").directive("__directive_camel_case", __directive_capitalized);
-})(0__namespace || (0__namespace = {}));
-    `.trim();
+})());
+`.trimLeft();
 }

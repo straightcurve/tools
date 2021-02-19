@@ -1,5 +1,6 @@
 import { isAbsolute } from "path";
 import API from "../../api";
+import Controller from "../../controller";
 import Data from "../../data";
 import Directive from "../../directive";
 import Service from "../../service";
@@ -9,9 +10,10 @@ import View from "../../view";
 let builders = new Map<string, (args: string[]) => Structure[]>();
 builders.set("c", (args) => {
     let directive = Directive.from(args);
-    let html = View.from([directive.folder_path]);
+    let view = View.from([directive.folder_path]);
+    let controller = Controller.from([directive.folder_path]);
 
-    return [directive, html];
+    return [directive, view, controller];
 });
 builders.set("component", (args) => {
     let directive = Directive.from(args);

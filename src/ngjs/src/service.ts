@@ -67,19 +67,17 @@ export default class Service extends BaseStructure {
 function get_template() {
     return `
 "use strict";
-var 0__namespace;
-(function (0__namespace) {
+(function () {
     var 0__service = /** @class */ (function () {
         function 0__service($rootScope) {
+            //  implementation goes here
+            
         }
-
-        //  implementation goes here
 
         return 0__service;
     }());
-    0__namespace.0__service = 0__service;
 
     angular.module("app").service("0__service", 0__service);
-})(0__namespace || (0__namespace = {}));
-    `.trim();
+})());
+`.trimLeft();
 }
