@@ -69,6 +69,10 @@ export default class Controller extends BaseStructure {
             .replace(/0__namespace/g, this.namespace)
             .replace(/0__controller/g, this.capitalized_name);
     }
+
+    protected compute_folder_path(path: string): string {
+        return join(super.compute_folder_path(path), this.name);
+    }
 }
 
 function get_template() {

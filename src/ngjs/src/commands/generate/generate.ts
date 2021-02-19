@@ -1,14 +1,17 @@
 import { isAbsolute } from "path";
 import API from "../../api";
+import Controller from "../../controller";
+import Data from "../../data";
+import Service from "../../service";
 import Structure from "../../structure";
 
 let builders = new Map<string, (args: string[]) => Structure>();
-// templates.set("c", controller);
-// templates.set("controller", controller);
-// templates.set("s", service);
-// templates.set("service", service);
-// templates.set("d", data);
-// templates.set("data", data);
+builders.set("c", Controller.from);
+builders.set("controller", Controller.from);
+builders.set("s", Service.from);
+builders.set("service", Service.from);
+builders.set("d", Data.from);
+builders.set("data", Data.from);
 builders.set("a", API.from);
 builders.set("api", API.from);
 

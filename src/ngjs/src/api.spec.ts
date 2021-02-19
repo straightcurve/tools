@@ -7,6 +7,10 @@ describe("generate api structure", () => {
         assert.throws(() => API.parse([]));
     });
 
+    it("should create api in current directory", () => {
+        assert.equal(API.from(["hello"]).folder_path, join(__dirname));
+    });
+
     it("should set proper name if it ends with .js", () => {
         let impl = API.from([join("../test", "zxc.js"), "-v", "1"]);
 

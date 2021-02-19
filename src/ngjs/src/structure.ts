@@ -63,6 +63,9 @@ export abstract class BaseStructure {
     public abstract get template(): string;
 
     protected compute_folder_path(path: string): string {
+        if (!path.includes("/"))
+            return __dirname;
+
         if (isAbsolute(path))
             return path.slice(0, path.lastIndexOf("/"));
 
@@ -70,9 +73,20 @@ export abstract class BaseStructure {
     }
 
     /**
-     * @returns `course` => `Course`
+     * @returns `course-discussion-topics` => `Course-discussion-topics`
      */
     protected get capitalized_name(): string {
-        return `${this.name[0].toUpperCase()}${this.name.slice(1)}`;
+        let name = to_camel_case(this.name);
+        return `${name[0].toUpperCase()}${name.slice(1)}`;
     }
+}
+
+/**
+ * @returns `course-discussion-topics` => `courseDiscussionTopics`
+ */
+export function to_camel_case(str: string): string {
+    let split = str.split("-");
+    return split[0] + split.slice(1).map(s => {
+        return `${s[0].toUpperCase()}${s.slice(1)}`;
+    }).join("");
 }

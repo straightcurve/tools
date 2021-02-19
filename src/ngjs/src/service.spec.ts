@@ -7,6 +7,10 @@ describe("generate service structure", () => {
         assert.throws(() => Service.parse([]));
     });
 
+    it("should create service in current directory", () => {
+        assert.equal(Service.from(["hello"]).folder_path, join(__dirname));
+    });
+
     it("should set proper name if it ends with .js", () => {
         let impl = Service.from([join("../test", "zxc.js"), "-v", "1"]);
 
