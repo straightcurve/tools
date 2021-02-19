@@ -1,7 +1,9 @@
 Features:
     ✔ Support dashes (-) in filenames @done(21-02-19 08:12)
     ☐ Support generation of routes
+    ☐ Automate inclusion of generated structures inside index.html
 
 Fixes:
     ✔ Generating a component should also generate a controller and an HTML template in the same directory @done(21-02-19 08:12)
     ✔ Abstract the template types implementations @done(21-02-19 08:12)
+    ☐ Allow only valid JS names
