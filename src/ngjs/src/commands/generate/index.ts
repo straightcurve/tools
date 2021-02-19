@@ -3,14 +3,16 @@ import { existsSync, writeFileSync } from "fs";
 import generate from "./generate";
 
 export default function execute(args: string[]) {
-    let implementation = generate(args);
+    let structure = generate(args);
+    if (structure === null)
+        return console.log(`No operations executed.`);
 
-    if (existsSync(implementation.path))
-        return console.error(`[ EXISTS ] ${implementation.path}`)
+    if (existsSync(structure.path))
+        return console.error(`[ EXISTS ] ${structure.path}`)
 
-    execSync(`mkdir -p ${implementation.folder_path}`);
+    execSync(`mkdir -p ${structure.folder_path}`);
     
-    writeFileSync(implementation.path, implementation.content);
+    writeFileSync(structure.path, structure.template);
 
-    console.log(`[ CREATED ] ${implementation.path}`);
+    console.log(`[ CREATED ] ${structure.path}`);
 }
