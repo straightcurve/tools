@@ -49,7 +49,7 @@ const scripts: Script[] = require(in_file);
 let omitted_script_count = 0;
 
 const install = async () => {
-    const bin = `/usr/bin`;
+    const bin = `/usr/local/bin`;
 
     for (let si = 0; si < scripts.length; si++) {
         let s = scripts[si];
