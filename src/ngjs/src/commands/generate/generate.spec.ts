@@ -2,7 +2,7 @@ import { assert } from "chai";
 import { join } from "path";
 import generate from "./generate";
 
-describe("generate template", () => {
+describe("generate command", () => {
     it("should throw if arguments < 2", () => {
         assert.throws(() => generate([]));
         assert.throws(() => generate(["c"]));
@@ -16,17 +16,6 @@ describe("generate template", () => {
         assert.throws(() => generate(["c", join(__dirname, "asd") ]));
     });
 
-    it("should set proper name/path/filename/folder_path for service", () => {
-        let impl = generate(["s", join("../test", "zxc") ]);
-        if (impl === null)
-            throw new Error("impl is null");
-
-        assert.equal(impl.name, "zxc");
-        assert.equal(impl.filename, "zxc.service.js");
-        assert.equal(impl.path, join(__dirname, "../../../test", "zxc.service.js"));
-        assert.equal(impl.folder_path, join(__dirname, "../../../test"));
-    });
-
     it("should set proper name/path/filename/folder_path for data", () => {
         let impl = generate(["d", join("../test", "zxc") ]);
         if (impl === null)
@@ -36,17 +25,6 @@ describe("generate template", () => {
         assert.equal(impl.filename, "zxc.js");
         assert.equal(impl.path, join(__dirname, "../../../test", "data", "zxc.js"));
         assert.equal(impl.folder_path, join(__dirname, "../../../test", "data"));
-    });
-
-    it("should set proper name/path/filename/folder_path for service relative", () => {
-        let impl = generate(["s", join("../../../test", "zxc/xyz") ]);
-        if (impl === null)
-            throw new Error("impl is null");
-
-        assert.equal(impl.name, "xyz");
-        assert.equal(impl.filename, "xyz.service.js");
-        assert.equal(impl.path, join(__dirname, "../../../test/zxc", "xyz.service.js"));
-        assert.equal(impl.folder_path, join(__dirname, "../../../test/zxc"));
     });
 
     it("should set proper name/path/filename/folder_path for data relative", () => {
