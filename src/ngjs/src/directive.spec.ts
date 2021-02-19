@@ -1,5 +1,6 @@
 import { assert } from "chai";
 import { join } from "path";
+import { cwd } from "process";
 import Directive from "./directive";
 
 describe("generate directive structure", () => {
@@ -8,7 +9,7 @@ describe("generate directive structure", () => {
     });
 
     it("should create directory with directive name in current directory", () => {
-        assert.equal(Directive.from(["hello"]).folder_path, join(__dirname, "hello"));
+        assert.equal(Directive.from(["hello"]).folder_path, join(cwd(), "hello"));
     });
 
     it("should set proper name if it ends with .js", () => {
@@ -16,8 +17,8 @@ describe("generate directive structure", () => {
 
         assert.equal(impl.name, "zxc");
         assert.equal(impl.filename, "zxc.directive.js");
-        assert.equal(impl.path, join(__dirname, "../test/zxc", "zxc.directive.js"));
-        assert.equal(impl.folder_path, join(__dirname, "../test/zxc"));
+        assert.equal(impl.path, join(cwd(), "../test/zxc", "zxc.directive.js"));
+        assert.equal(impl.folder_path, join(cwd(), "../test/zxc"));
     });
 
     it("should set proper name/path/filename/folder_path", () => {
@@ -25,8 +26,8 @@ describe("generate directive structure", () => {
 
         assert.equal(impl.name, "zxc");
         assert.equal(impl.filename, "zxc.directive.js");
-        assert.equal(impl.path, join(__dirname, "../test/zxc", "zxc.directive.js"));
-        assert.equal(impl.folder_path, join(__dirname, "../test/zxc"));
+        assert.equal(impl.path, join(cwd(), "../test/zxc", "zxc.directive.js"));
+        assert.equal(impl.folder_path, join(cwd(), "../test/zxc"));
     });
 
     it("should set proper name for dynamic version directive", () => {
@@ -34,8 +35,8 @@ describe("generate directive structure", () => {
 
         assert.equal(impl.name, "zxc");
         assert.equal(impl.filename, "zxc.directive.js");
-        assert.equal(impl.path, join(__dirname, "../test/zxc", "zxc.directive.js"));
-        assert.equal(impl.folder_path, join(__dirname, "../test/zxc"));
+        assert.equal(impl.path, join(cwd(), "../test/zxc", "zxc.directive.js"));
+        assert.equal(impl.folder_path, join(cwd(), "../test/zxc"));
     });
 
     it("should set proper name/path/filename/folder_path relative", () => {
@@ -43,8 +44,8 @@ describe("generate directive structure", () => {
 
         assert.equal(impl.name, "xyz");
         assert.equal(impl.filename, "xyz.directive.js");
-        assert.equal(impl.path, join(__dirname, "../test/zxc/xyz", "xyz.directive.js"));
-        assert.equal(impl.folder_path, join(__dirname, "../test/zxc/xyz"));
+        assert.equal(impl.path, join(cwd(), "../test/zxc/xyz", "xyz.directive.js"));
+        assert.equal(impl.folder_path, join(cwd(), "../test/zxc/xyz"));
     });
 
     it("should set proper name for dynamic version directive relative", () => {
@@ -52,7 +53,7 @@ describe("generate directive structure", () => {
 
         assert.equal(impl.name, "xyz");
         assert.equal(impl.filename, "xyz.directive.js");
-        assert.equal(impl.path, join(__dirname, "../test/zxc/xyz", "xyz.directive.js"));
-        assert.equal(impl.folder_path, join(__dirname, "../test/zxc/xyz"));
+        assert.equal(impl.path, join(cwd(), "../test/zxc/xyz", "xyz.directive.js"));
+        assert.equal(impl.folder_path, join(cwd(), "../test/zxc/xyz"));
     });
 });

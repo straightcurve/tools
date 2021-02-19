@@ -1,5 +1,6 @@
 import { assert } from "chai";
 import { join } from "path";
+import { cwd } from "process";
 import Service from "./service";
 
 describe("generate service structure", () => {
@@ -8,7 +9,7 @@ describe("generate service structure", () => {
     });
 
     it("should create service in current directory", () => {
-        assert.equal(Service.from(["hello"]).folder_path, join(__dirname));
+        assert.equal(Service.from(["hello"]).folder_path, join(cwd()));
     });
 
     it("should set proper name if it ends with .js", () => {
@@ -16,8 +17,8 @@ describe("generate service structure", () => {
 
         assert.equal(impl.name, "zxc");
         assert.equal(impl.filename, "zxc.service.js");
-        assert.equal(impl.path, join(__dirname, "../test", "zxc.service.js"));
-        assert.equal(impl.folder_path, join(__dirname, "../test"));
+        assert.equal(impl.path, join(cwd(), "../test", "zxc.service.js"));
+        assert.equal(impl.folder_path, join(cwd(), "../test"));
     });
 
     it("should set proper name/path/filename/folder_path", () => {
@@ -25,8 +26,8 @@ describe("generate service structure", () => {
 
         assert.equal(impl.name, "zxc");
         assert.equal(impl.filename, "zxc.service.js");
-        assert.equal(impl.path, join(__dirname, "../test", "zxc.service.js"));
-        assert.equal(impl.folder_path, join(__dirname, "../test"));
+        assert.equal(impl.path, join(cwd(), "../test", "zxc.service.js"));
+        assert.equal(impl.folder_path, join(cwd(), "../test"));
     });
 
     it("should set proper name for dynamic version service", () => {
@@ -34,8 +35,8 @@ describe("generate service structure", () => {
 
         assert.equal(impl.name, "zxc");
         assert.equal(impl.filename, "zxc.service.js");
-        assert.equal(impl.path, join(__dirname, "../test", "zxc.service.js"));
-        assert.equal(impl.folder_path, join(__dirname, "../test"));
+        assert.equal(impl.path, join(cwd(), "../test", "zxc.service.js"));
+        assert.equal(impl.folder_path, join(cwd(), "../test"));
     });
 
     it("should set proper name/path/filename/folder_path relative", () => {
@@ -43,8 +44,8 @@ describe("generate service structure", () => {
 
         assert.equal(impl.name, "xyz");
         assert.equal(impl.filename, "xyz.service.js");
-        assert.equal(impl.path, join(__dirname, "../test/zxc", "xyz.service.js"));
-        assert.equal(impl.folder_path, join(__dirname, "../test/zxc"));
+        assert.equal(impl.path, join(cwd(), "../test/zxc", "xyz.service.js"));
+        assert.equal(impl.folder_path, join(cwd(), "../test/zxc"));
     });
 
     it("should set proper name for dynamic version service relative", () => {
@@ -52,7 +53,7 @@ describe("generate service structure", () => {
 
         assert.equal(impl.name, "xyz");
         assert.equal(impl.filename, "xyz.service.js");
-        assert.equal(impl.path, join(__dirname, "../test/zxc", "xyz.service.js"));
-        assert.equal(impl.folder_path, join(__dirname, "../test/zxc"));
+        assert.equal(impl.path, join(cwd(), "../test/zxc", "xyz.service.js"));
+        assert.equal(impl.folder_path, join(cwd(), "../test/zxc"));
     });
 });

@@ -1,5 +1,6 @@
 import { assert } from "chai";
 import { join } from "path";
+import { cwd } from "process";
 import generate from "./generate";
 
 describe("generate command", () => {
@@ -13,6 +14,6 @@ describe("generate command", () => {
     });
 
     it("should throw if absolute path", () => {
-        assert.throws(() => generate(["c", join(__dirname, "asd") ]));
+        assert.throws(() => generate(["c", join(cwd(), "asd") ]));
     });
 });

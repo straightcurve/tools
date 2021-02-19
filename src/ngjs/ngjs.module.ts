@@ -2,8 +2,10 @@
  * @module ngjs
  */
 
-import { argv, exit } from "process";
+import { argv, cwd, exit } from "process";
 import execute from "./src/commands/generate/index";
+
+console.log(cwd());
 
 if(argv.length === 2) {
     display_help();

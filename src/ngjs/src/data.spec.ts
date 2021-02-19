@@ -1,5 +1,6 @@
 import { assert } from "chai";
 import { join } from "path";
+import { cwd } from "process";
 import Data from "./data";
 
 describe("generate data structure", () => {
@@ -8,7 +9,7 @@ describe("generate data structure", () => {
     });
 
     it("should create data directory in current directory", () => {
-        assert.equal(Data.from(["hello"]).folder_path, join(__dirname, "data"));
+        assert.equal(Data.from(["hello"]).folder_path, join(cwd(), "data"));
     });
 
     it("should set proper name if it ends with .js", () => {
@@ -16,8 +17,8 @@ describe("generate data structure", () => {
 
         assert.equal(impl.name, "zxc");
         assert.equal(impl.filename, "zxc.js");
-        assert.equal(impl.path, join(__dirname, "../test/data", "zxc.js"));
-        assert.equal(impl.folder_path, join(__dirname, "../test/data"));
+        assert.equal(impl.path, join(cwd(), "../test/data", "zxc.js"));
+        assert.equal(impl.folder_path, join(cwd(), "../test/data"));
     });
 
     it("should set proper name/path/filename/folder_path", () => {
@@ -25,8 +26,8 @@ describe("generate data structure", () => {
 
         assert.equal(impl.name, "zxc");
         assert.equal(impl.filename, "zxc.js");
-        assert.equal(impl.path, join(__dirname, "../test/data", "zxc.js"));
-        assert.equal(impl.folder_path, join(__dirname, "../test/data"));
+        assert.equal(impl.path, join(cwd(), "../test/data", "zxc.js"));
+        assert.equal(impl.folder_path, join(cwd(), "../test/data"));
     });
 
     it("should set proper name for dynamic version data", () => {
@@ -34,8 +35,8 @@ describe("generate data structure", () => {
 
         assert.equal(impl.name, "zxc");
         assert.equal(impl.filename, "zxc.js");
-        assert.equal(impl.path, join(__dirname, "../test/data", "zxc.js"));
-        assert.equal(impl.folder_path, join(__dirname, "../test/data"));
+        assert.equal(impl.path, join(cwd(), "../test/data", "zxc.js"));
+        assert.equal(impl.folder_path, join(cwd(), "../test/data"));
     });
 
     it("should set proper name/path/filename/folder_path relative", () => {
@@ -43,8 +44,8 @@ describe("generate data structure", () => {
 
         assert.equal(impl.name, "xyz");
         assert.equal(impl.filename, "xyz.js");
-        assert.equal(impl.path, join(__dirname, "../test/zxc/data", "xyz.js"));
-        assert.equal(impl.folder_path, join(__dirname, "../test/zxc/data"));
+        assert.equal(impl.path, join(cwd(), "../test/zxc/data", "xyz.js"));
+        assert.equal(impl.folder_path, join(cwd(), "../test/zxc/data"));
     });
 
     it("should set proper name for dynamic version data relative", () => {
@@ -52,7 +53,7 @@ describe("generate data structure", () => {
 
         assert.equal(impl.name, "xyz");
         assert.equal(impl.filename, "xyz.js");
-        assert.equal(impl.path, join(__dirname, "../test/zxc/data", "xyz.js"));
-        assert.equal(impl.folder_path, join(__dirname, "../test/zxc/data"));
+        assert.equal(impl.path, join(cwd(), "../test/zxc/data", "xyz.js"));
+        assert.equal(impl.folder_path, join(cwd(), "../test/zxc/data"));
     });
 });

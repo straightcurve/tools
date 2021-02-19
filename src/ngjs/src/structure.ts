@@ -1,4 +1,5 @@
 import { isAbsolute, join } from "path";
+import { cwd } from "process";
 
 export default interface Structure {
     namespace: string;
@@ -59,11 +60,11 @@ export abstract class BaseStructure {
     }
 
     protected compute_folder_path(path: string): string {
-        if (!path.includes("/")) return __dirname;
+        if (!path.includes("/")) return cwd();
 
         if (isAbsolute(path)) return path.slice(0, path.lastIndexOf("/"));
 
-        return join(__dirname, path.slice(0, path.lastIndexOf("/")));
+        return join(cwd(), path.slice(0, path.lastIndexOf("/")));
     }
 
     protected compute_name(name: string): string {
