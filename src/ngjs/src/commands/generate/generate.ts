@@ -1,13 +1,13 @@
 import { isAbsolute } from "path";
 import API from "../../api";
-import Controller from "../../controller";
 import Data from "../../data";
+import Directive from "../../directive";
 import Service from "../../service";
 import Structure from "../../structure";
 
 let builders = new Map<string, (args: string[]) => Structure>();
-builders.set("c", Controller.from);
-builders.set("controller", Controller.from);
+builders.set("c", Directive.from);
+builders.set("component", Directive.from);
 builders.set("s", Service.from);
 builders.set("service", Service.from);
 builders.set("d", Data.from);
