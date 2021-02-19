@@ -5,7 +5,10 @@
   "main": "check_min_node_version.js",
   "scripts": {
     "test": "mocha -r ts-node/register src/**/*.spec.ts",
-    "build": "tsc"
+    "build": "tsc",
+    "generate": "npm run build && node build/generator/generator.module.js",
+    "install": "npm run generate && node build/installer/installer.module.js -f ../generator/scripts.json",
+    "install-d": "npm run generate && node build/installer/installer.module.js -f ../generator/scripts.json --dangerous",
   },
   "private": true,
   "browser": {
