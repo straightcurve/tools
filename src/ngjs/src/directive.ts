@@ -86,6 +86,7 @@ export default class Directive extends BaseStructure {
 
 function get_template() {
     return `
+//@ts-check
 "use strict";
 (function () {
     function __identifier_capitalized($rootScope) {

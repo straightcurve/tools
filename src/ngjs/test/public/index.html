@@ -1,0 +1,1890 @@
+<!doctype html>
+<html class="no-js overflow-hidden" ng-app="app" ng-cloak>
+<head>
+    <script src="<%= newRelicSnippetPath %>"></script>
+    <script>
+        var clientService = "<%= clientService %>";
+        var cbtService = "<%= cbtService %>";
+        var incitesService = "<%= incitesService %>";
+        var proctorService = "<%= proctorService %>";
+        var proctorSockets = "<%= proctorSockets %>";
+        var curriculumService = "<%= curriculumService %>";
+        var teachService = "<%= teachService %>";
+        var inciteUrl = "<%= inciteUrl %>"
+        var studentPortalUrl = "<%= studentPortalUrl %>"
+        var jaspersoftFolder = "<%= jaspersoftFolder %>"
+        var pdftronServer = "<%= pdftronServer %>"
+        var pdfLicense = "<%= pdfLicense %>"
+        var pdfPath = "<%= pdfPath %>"
+        var froalaKey = "<%= froalaKey %>";
+        var pdfInitialDoc = "<%= pdfInitialDoc %>"
+        var pdfTeachInitialDoc = "<%= pdfTeachInitialDoc %>"
+        var teachSockets = "<%= teachSockets %>";
+        var teachSocketsService = "<%= teachSocketsService %>";
+        var proctorSocketsService = "<%= proctorSocketsService %>";
+        var teachImageUrl = "<%= teachImageUrl %>";
+        var logService = "<%= logService %>";
+        var learnService = "<%= learnService %>";
+        var learnService2 = "<%= learnService2 %>";
+        var uploadService = "<%= uploadService %>";
+        var reportsService = "<%= reportsService %>";
+        var streamService = "<%= streamService %>";
+        var calendarService = "<%= calendarService %>";
+        var communitiesService = "<%= communitiesService %>";
+        var chatService = "<%= chatService %>";
+        var s3Credentials = JSON.parse(decodeURIComponent("<%= s3Credentials %>"));
+
+        var _rollbarConfig = {
+            accessToken: "<%= rollbarClientToken %>",
+            captureUncaught: true,
+            captureUnhandledRejections: true,
+            payload: {
+                environment: "<%= env %>"
+            }
+        };
+        var webrtcIceServers = JSON.parse(decodeURIComponent("<%= webrtcIceServers %>"));
+        // Rollbar Snippet
+        !function(r){function o(n){if(e[n])return e[n].exports;var t=e[n]={exports:{},id:n,loaded:!1};return r[n].call(t.exports,t,t.exports,o),t.loaded=!0,t.exports}var e={};return o.m=r,o.c=e,o.p="",o(0)}([function(r,o,e){"use strict";var n=e(1),t=e(4);_rollbarConfig=_rollbarConfig||{},_rollbarConfig.rollbarJsUrl=_rollbarConfig.rollbarJsUrl||"https://cdnjs.cloudflare.com/ajax/libs/rollbar.js/2.3.1/rollbar.min.js",_rollbarConfig.async=void 0===_rollbarConfig.async||_rollbarConfig.async;var a=n.setupShim(window,_rollbarConfig),l=t(_rollbarConfig);window.rollbar=n.Rollbar,a.loadFull(window,document,!_rollbarConfig.async,_rollbarConfig,l)},function(r,o,e){"use strict";function n(r){return function(){try{return r.apply(this,arguments)}catch(r){try{console.error("[Rollbar]: Internal error",r)}catch(r){}}}}function t(r,o){this.options=r,this._rollbarOldOnError=null;var e=s++;this.shimId=function(){return e},window&&window._rollbarShims&&(window._rollbarShims[e]={handler:o,messages:[]})}function a(r,o){var e=o.globalAlias||"Rollbar";if("object"==typeof r[e])return r[e];r._rollbarShims={},r._rollbarWrappedError=null;var t=new p(o);return n(function(){o.captureUncaught&&(t._rollbarOldOnError=r.onerror,i.captureUncaughtExceptions(r,t,!0),i.wrapGlobals(r,t,!0)),o.captureUnhandledRejections&&i.captureUnhandledRejections(r,t,!0);var n=o.autoInstrument;return o.enabled!==!1&&(void 0===n||n===!0||"object"==typeof n&&n.network)&&r.addEventListener&&(r.addEventListener("load",t.captureLoad.bind(t)),r.addEventListener("DOMContentLoaded",t.captureDomContentLoaded.bind(t))),r[e]=t,t})()}function l(r){return n(function(){var o=this,e=Array.prototype.slice.call(arguments,0),n={shim:o,method:r,args:e,ts:new Date};window._rollbarShims[this.shimId()].messages.push(n)})}var i=e(2),s=0,d=e(3),c=function(r,o){return new t(r,o)},p=d.bind(null,c);t.prototype.loadFull=function(r,o,e,t,a){var l=function(){var o;if(void 0===r._rollbarDidLoad){o=new Error("rollbar.js did not load");for(var e,n,t,l,i=0;e=r._rollbarShims[i++];)for(e=e.messages||[];n=e.shift();)for(t=n.args||[],i=0;i<t.length;++i)if(l=t[i],"function"==typeof l){l(o);break}}"function"==typeof a&&a(o)},i=!1,s=o.createElement("script"),d=o.getElementsByTagName("script")[0],c=d.parentNode;s.crossOrigin="",s.src=t.rollbarJsUrl,e||(s.async=!0),s.onload=s.onreadystatechange=n(function(){if(!(i||this.readyState&&"loaded"!==this.readyState&&"complete"!==this.readyState)){s.onload=s.onreadystatechange=null;try{c.removeChild(s)}catch(r){}i=!0,l()}}),c.insertBefore(s,d)},t.prototype.wrap=function(r,o,e){try{var n;if(n="function"==typeof o?o:function(){return o||{}},"function"!=typeof r)return r;if(r._isWrap)return r;if(!r._rollbar_wrapped&&(r._rollbar_wrapped=function(){e&&"function"==typeof e&&e.apply(this,arguments);try{return r.apply(this,arguments)}catch(e){var o=e;throw"string"==typeof o&&(o=new String(o)),o._rollbarContext=n()||{},o._rollbarContext._wrappedSource=r.toString(),window._rollbarWrappedError=o,o}},r._rollbar_wrapped._isWrap=!0,r.hasOwnProperty))for(var t in r)r.hasOwnProperty(t)&&(r._rollbar_wrapped[t]=r[t]);return r._rollbar_wrapped}catch(o){return r}};for(var u="log,debug,info,warn,warning,error,critical,global,configure,handleUncaughtException,handleUnhandledRejection,captureEvent,captureDomContentLoaded,captureLoad".split(","),f=0;f<u.length;++f)t.prototype[u[f]]=l(u[f]);r.exports={setupShim:a,Rollbar:p}},function(r,o){"use strict";function e(r,o,e){if(r){var t;"function"==typeof o._rollbarOldOnError?t=o._rollbarOldOnError:r.onerror&&!r.onerror.belongsToShim&&(t=r.onerror,o._rollbarOldOnError=t);var a=function(){var e=Array.prototype.slice.call(arguments,0);n(r,o,t,e)};a.belongsToShim=e,r.onerror=a}}function n(r,o,e,n){r._rollbarWrappedError&&(n[4]||(n[4]=r._rollbarWrappedError),n[5]||(n[5]=r._rollbarWrappedError._rollbarContext),r._rollbarWrappedError=null),o.handleUncaughtException.apply(o,n),e&&e.apply(r,n)}function t(r,o,e){if(r){"function"==typeof r._rollbarURH&&r._rollbarURH.belongsToShim&&r.removeEventListener("unhandledrejection",r._rollbarURH);var n=function(r){var e=r.reason,n=r.promise,t=r.detail;!e&&t&&(e=t.reason,n=t.promise),o&&o.handleUnhandledRejection&&o.handleUnhandledRejection(e,n)};n.belongsToShim=e,r._rollbarURH=n,r.addEventListener("unhandledrejection",n)}}function a(r,o,e){if(r){var n,t,a="EventTarget,Window,Node,ApplicationCache,AudioTrackList,ChannelMergerNode,CryptoOperation,EventSource,FileReader,HTMLUnknownElement,IDBDatabase,IDBRequest,IDBTransaction,KeyOperation,MediaController,MessagePort,ModalWindow,Notification,SVGElementInstance,Screen,TextTrack,TextTrackCue,TextTrackList,WebSocket,WebSocketWorker,Worker,XMLHttpRequest,XMLHttpRequestEventTarget,XMLHttpRequestUpload".split(",");for(n=0;n<a.length;++n)t=a[n],r[t]&&r[t].prototype&&l(o,r[t].prototype,e)}}function l(r,o,e){if(o.hasOwnProperty&&o.hasOwnProperty("addEventListener")){for(var n=o.addEventListener;n._rollbarOldAdd&&n.belongsToShim;)n=n._rollbarOldAdd;var t=function(o,e,t){n.call(this,o,r.wrap(e),t)};t._rollbarOldAdd=n,t.belongsToShim=e,o.addEventListener=t;for(var a=o.removeEventListener;a._rollbarOldRemove&&a.belongsToShim;)a=a._rollbarOldRemove;var l=function(r,o,e){a.call(this,r,o&&o._rollbar_wrapped||o,e)};l._rollbarOldRemove=a,l.belongsToShim=e,o.removeEventListener=l}}r.exports={captureUncaughtExceptions:e,captureUnhandledRejections:t,wrapGlobals:a}},function(r,o){"use strict";function e(r,o){this.impl=r(o,this),this.options=o,n(e.prototype)}function n(r){for(var o=function(r){return function(){var o=Array.prototype.slice.call(arguments,0);if(this.impl[r])return this.impl[r].apply(this.impl,o)}},e="log,debug,info,warn,warning,error,critical,global,configure,handleUncaughtException,handleUnhandledRejection,_createItem,wrap,loadFull,shimId,captureEvent,captureDomContentLoaded,captureLoad".split(","),n=0;n<e.length;n++)r[e[n]]=o(e[n])}e.prototype._swapAndProcessMessages=function(r,o){this.impl=r(this.options);for(var e,n,t;e=o.shift();)n=e.method,t=e.args,this[n]&&"function"==typeof this[n]&&("captureDomContentLoaded"===n||"captureLoad"===n?this[n].apply(this,[t[0],e.ts]):this[n].apply(this,t));return this},r.exports=e},function(r,o){"use strict";r.exports=function(r){return function(o){if(!o&&!window._rollbarInitialized){r=r||{};for(var e,n,t=r.globalAlias||"Rollbar",a=window.rollbar,l=function(r){return new a(r)},i=0;e=window._rollbarShims[i++];)n||(n=e.handler),e.handler._swapAndProcessMessages(l,e.messages);window[t]=n,window._rollbarInitialized=!0}}}}]);
+        // End Rollbar Snippet
+    </script>
+    <style type="text/css">
+        [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+            display: none !important;
+        }
+    </style>
+    <meta charset="utf-8">
+    <title ng-bind="$state.current.data.pageTitle + ' | ' + ClientName"></title>
+    <meta name="copyright" content="Education Incites®" />
+    <meta name="description" content="Looking for a powerful Assessment System
+that’s easy to use? The Incite® Platform supports the complete assessment process, from creating items and standards-based assessments,
+to administering and scoring, then providing real-time actionable data." />
+    <meta name="keywords" content="Incite®, assessments, education, technology enhanced items" />
+    <meta name="robots" content="noindex,nofollow" />
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=yes"/>-->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700,700i" rel="stylesheet">
+    <link href='css/fontgoogle.css' rel='stylesheet' type='text/css'>
+    <link href="css/font-awesome-5.min.css" rel="stylesheet"/>
+    <link href="css/icofonts/icofont.min.css" rel="stylesheet"/>
+    <link href="css/style.css" rel="stylesheet" type="text/css"/>
+    <link href="css/widgets.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="css/mathquill.css">
+    <link href="css/jsxgraph.css" rel="stylesheet" type="text/css"/>
+    <link href="css/jquery-ui.css" rel="stylesheet" type="text/css"/>
+    <link href="css/LiveInspect.css" rel="stylesheet" type="text/css"/>
+    <link href="css/scip.css" rel="stylesheet" type="text/css"/>
+    <link href="css/carousel.css" rel="stylesheet" type="text/css"/>
+    <link href="css/ie.css" rel="stylesheet" type="text/css"/>
+    <script src="js/vendor/pdftron/lib/webviewer.min.js"></script>
+</head>
+
+<body class="bodyBackground {{$state.current.data.bodyClass}}" ng-class="{'pb0' : !showHeader}">
+<div id="loading-app-spinner"></div>
+
+<!-- MODAL EQUATION -->
+<div id="equationEditDropdown" class="modal modal-autoh fade" tabindex="-1" data-backdrop="static" data-keyboard="false" aria-hidden="true" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <b>Edit equation using the equation editor</b>
+            </div>
+            <div class="modal-body">
+                <div ng-if="isEquationSelected" class="write-eq-wrap" show-errors>
+                <span class="write-eq-space" id="editEquation" ng-click="addFocus()" mathquill-editor math-field-element-edit-equation>
+                </span>
+                    <div class="eq-editor-wrap" equation-editor-edit-equation></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" data-dismiss="modal" class="btn btn-info" ng-click="insertEditEquation()">Insert</button>
+                <button type="button" class="btn btn-info" data-dismiss="modal" ng-click="deleteEquation()">Delete</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="cancelEquationEditModal()">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL PROFILE IMAGE -->
+<div class="modal modal-autoh fade" id="modal-profile" tabindex="-1" role="dialog" ng-controller="avatarCropCtrl" data-backdrop="static" aria-hidden="true" data-keyboard="false">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Profile Picture</h5>
+            </div>
+            <div class="modal-body">
+                <div class="row row-vspace">
+                    <div class="col-md-8 col-md-offset-2">
+                        <div class="up2crop-wrap img-cropper">
+                            <div class="row row-vspace">
+                                <div class="col-sm-3">
+                                    <div class="resultImg">
+                                        <img ng-if="profilePictureUrl != ''" ng-src="{{profilePictureUrl}}" alt="{{userSettings.userIcon}}" class="pull-right" style="height:60px;width:60px;" />
+                                        <img ng-if="profilePictureUrl == ''" ng-src="{{userSettings.userIcon}}" alt="{{userSettings.userIcon}}" class="pull-right" style="height:60px;width:60px;" />
+                                    </div>
+                                </div>
+                                <div class="col-sm-9">
+                                    <div class="actions ">
+                                        <span class="crop-form-upload">
+                                            <a>Change Profile Picture</a>
+                                            <input type="file" id="upload" value="Choose a file" accept="image/*"/>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-9 col-sm-offset-3">
+                                    <div class="img2crop-wrap">
+                                        <div id="img2crop"></div>
+                                        <button class="btn btn-info btn-lg upload-result">Crop</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-info" ng-click="uploadProfilePicture()" >Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- MODAL CHANGE PASSWORD -->
+<div class="modal modal-autoh fade" id="modal-password" tabindex="-1" role="dialog" data-backdrop="static" ng-controller="resetCtrl" aria-hidden="true" data-keyboard="false">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>-->
+                <h5 class="modal-title">Change Password</h5>
+            </div>
+            <div class="modal-body p0 h-auto">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-6 col-md-offset-3">
+                            <h5>Change Password</h5>
+                            <div class="form-group row-vspace">
+                                <input type="password" placeholder="Current Password" class="form-control" ng-model="currentPassword"/>
+                            </div>
+                            <div class="form-group row-vspace">
+                                <input type="password" placeholder="New Password" class="form-control" ng-model="password"/>
+                            </div>
+                            <div class="form-group row-vspace">
+                                <input type="password" placeholder="Confirm New Password" class="form-control" ng-model="confirmpassword"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" ng-click="ClearPassword()" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-info" ng-click="ChangePassword()">Save</button>
+            </div>
+            <div class="" ng-class="resetAlert">
+                <p>{{resetMsg}}</p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- MODAL IMPERSONATE USER -->
+<div class="modal fade modal-autoh" id="modal-impersonate" tabindex="-1" role="dialog" data-backdrop="static" aria-hidden="true" data-keyboard="false">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" ng-click="closeImpersonateModal()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h5 class="modal-title">Impersonate User</h5>
+            </div>
+            <div class="modal-body ph0 h-auto" id="modal-impersonate-content">
+                <div class="d-flex f-dir-column">
+                    <div class="search-wrap row-vspace-md">
+                        <div class="row d-flex f-dir-row ph9">
+                            <div class="col-sm-4">
+                                <input ng-model="impersonateUsersSearch" ng-init="impersonateUsersSearch=''" type="text" placeholder="Search User to Impersonate" class="form-control">
+                            </div>
+                            <div class="col-sm-4">
+                                <select type="text" id="IDrolesForImpersonate" class="impersonateSearchModalDD select2" data-placeholder="Role"></select>
+                            </div>
+                            <div class="col-sm-4">
+                                <select type="text" id="IDschoolsForImpersonate" class="impersonateSearchModalDD select2" data-placeholder="School"></select>
+                            </div>
+                            <div class="f00auto mh9">
+                                <button type="button" class="btn btn-info" ng-click="getImpersonateModalData(0,50)">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <p class="mb0 mt6 ph9"><em>Click the search icon to return results.</em></p>
+                    </div>
+                    <div class="overflauto h100">
+                        <div ng-if="impersonateUsers != null && impersonateUsers.length > 0" class="h100">
+                            <div class="fixedTable grid-fixed-headers-T h100 pt0" id="impersonateGrid">
+                                <header class="fixedTable-header infinity">
+                                    <div class="infinity-grid">
+                                        <div class="infinity-thead">
+                                            <div class="infinity-header">
+                                                <div style="width:96px">Staff ID</div>
+                                                <div>Role</div>
+                                                <div>Name</div>
+                                                <div>School</div>
+                                                <div style="width:96px">Impersonate</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </header>
+                                <div class="fixedTable-body infinity" id="scrollImpersonate">
+                                    <div class="infinity-grid infinity-grid-sm hoverable">
+                                        <div class="infinity-body" buffered-scroll>
+                                            <div class="infinity-row" id="impersonateList" ng-repeat="user in impersonateUsers | orderBy: 'fullName'">
+                                                <div style="width:96px">{{user.staffId}}</div>
+                                                <div>{{user.userRoles}}</div>
+                                                <div>{{user.fullName}}</div>
+                                                <div>
+                                                    <p class="mb0"> {{user.schools.join(', ')}}</p>
+                                                </div>
+                                                <div style="width:96px">
+                                                    <a ng-if="!user.userRoles.includes(',')" ng-click="loadImpersonateUser(user)" class="c-pointer"><i class="fas fa-handshake" aria-hidden="true"></i></a>
+                                                    <a ng-if="user.userRoles.includes(',')" data-toggle="modal" ng-click="loadSelectRoleModal(user)" class="pb0 c-pointer"><i class="fas fa-handshake" aria-hidden="true"></i></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- MODAL TOGGLE ROLE-->
+<div ng-if="userSettings.role != null" class="modal fade modal-autoh" id="modal-toggle-role" tabindex="-1" role="dialog" data-backdrop="static" ng-controller="changeRoleCtrl" aria-hidden="true" data-keyboard="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Change Role</h5>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <ul class="list-group">
+                            <li class="list-group-item-menu" ng-if="!userSettings.impersonate" ng-repeat="role in userSettings.allRoles" ng-class="{'active': role === active}" ng-click="click($index)"><a href="">{{role}}</a></li>
+                            <li class="list-group-item-menu" ng-if="userSettings.impersonate" ng-repeat="role in userSettings.userWhoImpersonatesAllRoles" ng-class="{'active': role === active}" ng-click="click($index)"><a href="">{{role}}</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="cancelSelectedRole()">Cancel</button>
+                <button type="button" class="btn btn-info" ng-click="changeUserRole()">Change Role</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- MODAL TOGGLE MULTIPLE-ROLE-->
+<div ng-if="userSettings.role != null" class="modal fade modal-autoh" id="modal-toggle-role-multiple" tabindex="-1" role="dialog" data-backdrop="static" ng-controller="changeRoleCtrl" aria-hidden="true" data-keyboard="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Select Role</h5>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <ul class="list-menus-permissions hoverable selectable" style="padding: 24px 0">
+                            <li class="" ng-repeat="role in userForImpersonation.rolesDropdown" ng-class="{'list-menu-selected': role === active}" ng-click="clickmultiple($index)">
+                                <div class="infinity-radio">
+                                    <input type="radio" id="role{{$index}}" name="{{userForImpersonation._id}}">
+                                    <label for="role{{$index}}">{{role}}</label>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="cancelSelectedRole()">Cancel</button>
+                <button type="button" class="btn btn-info" ng-click="loadImpersonateUserMultiple()">Impersonate</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- MODAL SESSION TIMEOUT-->
+<div class="modal fade modal-autoh" id="modal-session-timeout" tabindex="-1" role="dialog" data-backdrop="static" aria-hidden="true" data-keyboard="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>-->
+                <h5 class="modal-title text-warning">Timeout Warning</h5>
+            </div>
+            <div class="modal-body" idle-countdown="countdown" ng-init="countdown=sessiontimeoutWarning">
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-1">
+                        <p class="text-center"><i class="fas fa-5x fa-clock text-warning"></i></p>
+                        <p class="text-center">Your session is about to time out. Do you want to continue?</p>
+                        <p class="text-large text-center"><strong class="text-danger"> {{countdown}} second(s)  </strong> left</p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-warning" data-dismiss="modal" ng-click="resumeSession()">Resume Session</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="InciteWrapper" ng-controller="sidebarCtrl" ng-class="{'open': sidebarExpanded, 'p0' : !showHeader, 'sidebar-left-off' : checkSideBarOff() }">
+    <div class="container" ng-show="isSSOError">
+        <div class="row">
+            <div class="col-xs-12">
+                <figure class="appLogo">
+                    <img class="appLogoDinamic" alt="Incite®"/>
+                </figure>
+            </div>
+        </div>
+    </div>
+
+    <div id="SidebarWrapper" ng-show="showHeader && !isSSOError && checkSideBarOn() && !WorkMode" ng-class="sidebarMobile;">
+        <ul class="edin-sidebar" ng-class="{'navbar-sm': !sidebarExpanded}">
+
+            <li class="edin-sidebar-main">
+                <a class="navbar-brand" ui-sref="/dashboard">
+                    <figure class="appLogo" ng-class="">
+                        <img class="appLogoDinamic hidden-sm" alt="Incite®" ng-show="sidebarExpanded"/>
+                        <img class="appLogoIconDinamic" alt="Incite®" ng-show="!sidebarExpanded || sidebarMobile"/>
+                    </figure>
+                    <span class="clearfix"></span>
+                </a>
+                <span class="clearfix"></span>
+                <span class="edin-sidebar-collapse">
+                    <span ng-click="toggleSidebar()" >
+                        <i ng-class="{'icofont-dotted-left': sidebarExpanded, 'icofont-dotted-right': !sidebarExpanded}"></i>
+                    </span>
+                </span>
+            </li>
+
+            <!--<li class="edin-sidebar-title"><span>NAVIGATION</span></li>-->
+            <li ng-show="userSettings.hasNoOverallRestriction == true || userSettings.menuAccess.GlobalLeftNavHome == true" ng-class="{'active' : $state.current.data.pageTitle == 'Home'}" class="edin-sidebar-list-item">
+                <a ui-sref="/home" ng-click="logReportMessage('Accessed Home Tab')">
+                    <i class="icofont-ui-home"></i> Home</a>
+            </li>
+            <li ng-show="userSettings.hasNoOverallRestriction == true || userSettings.menuAccess.GlobalLeftNavTeach == true" ng-class="{'active' : $state.current.data.group == 'Teach'}" class="edin-sidebar-list-item">
+                <a ui-sref="/Teach.Catalog">
+                    <i class="icofont-certificate-alt-2"></i> Teach</a>
+            </li>
+            <li ng-show="userSettings.hasNoOverallRestriction == true || userSettings.menuAccess.GlobalLeftNaveLearning == true" ng-class="{'active' : $state.current.data.group == 'eLearn'}" class="edin-sidebar-list-item">
+                <a ui-sref="/eLearning.Catalog">
+                    <i class="icofont-laptop-alt"></i> eLearning</a>
+            </li>
+            <li ng-show="userSettings.hasNoOverallRestriction == true || userSettings.menuAccess.GlobalLeftNavAssess == true"
+                ng-click="logReportMessage('Accessed Assess tab')" ng-class="{'active' : $state.current.data.group == 'Assess'}" class="edin-sidebar-list-item">
+                <a ui-sref="/dashboard">
+                    <i class="icofont-paper"></i> Assess</a>
+            </li>
+            <li ng-show="userSettings.hasNoOverallRestriction == true || userSettings.menuAccess.GlobalLeftNavResourceLibrary == true" ng-class="{'active' : $state.current.data.group == 'ResourceLibrary'}" class="edin-sidebar-list-item">
+                <a ui-sref="/ResourceLibrary">
+                    <i class="icofont-library"></i> Resource <br ng-if="!sidebarExpanded">Library</a>
+            </li>
+            <li ng-show="userSettings.hasNoOverallRestriction == true || userSettings.menuAccess.GlobalLeftNavProfessionalLearning == true" ng-class="{'active' : $state.current.data.group == 'PL'}" class="edin-sidebar-list-item">
+                <a ui-sref="/PL.PLCourses">
+                    <i class="icofont-instrument"></i> Professional Learning</a>
+            </li>
+            <li ng-show="userSettings.hasNoOverallRestriction == true || userSettings.menuAccess.GlobalLeftNavCommunities == true" ng-class="{'active' : $state.current.data.group == 'Communities'}" class="edin-sidebar-list-item">
+                <a ui-sref="/Communities.Catalog">
+                    <i class="icofont-people"></i> Communities</a>
+            </li>
+            <li ng-show="userSettings.hasNoOverallRestriction == true || userSettings.menuAccess.GlobalLeftNavParent == true" ng-class="{'active' : $state.current.data.group == 'Parent'}" class="edin-sidebar-list-item">
+                <a ui-sref="/Parent">
+                    <i class="icofont-users-alt-4"></i> Parent</a>
+            </li>
+            <li ng-show="userSettings.hasNoOverallRestriction == true || userSettings.menuAccess.GlobalLeftNavAnalyze == true" ng-class="{'active' : $state.current.data.group == 'analyze'}" class="edin-sidebar-list-item">
+                <!--<a ui-sref="/Analyze.Analytics">-->
+                <a ui-sref="/Analyze.Reports.Assess">
+                    <i class="icofont-chart-line-alt"></i> Analyze</a>
+            </li>
+            <li ng-show="userSettings.hasNoOverallRestriction == true || userSettings.menuAccess.GlobalLeftNavAdmin == true" ng-class="{'active' : $state.current.data.group == 'PLAdmin' || $state.current.data.group == 'TeachAdmin' || $state.current.data.group == 'gadmin'}" class="edin-sidebar-list-item">
+                <!--<a ui-sref="/TeachAdmin.WorkspaceTemplates" data-ui-sref-opts="{reload: true}">-->
+                <a ui-sref="/settings.account-management.district-profile" data-ui-sref-opts="{reload: true}">
+                    <i class="icofont-tools"></i> Admin</a>
+            </li>
+            <!--<li class="edin-sidebar-list-item mt3 active">
+                <a ui-sref="/Teach.Classes" class="bgcol-light-8">
+                    <i class="icofont-group-students"></i>
+                    Art Class <br>
+                    <label class="label label-danger mt3 c-pointer">Live</label>
+                </a>
+            </li>-->
+        </ul>
+    </div>
+
+    <div class="site-wrapper" id="ContentWrapper">
+        <div class="page-content h100">
+            <nav class="navbar navbar-default p-relative" ng-if="!isSSOError || userSettings.userLoggedIn != null || userSettings.userLoggedIn != ''" ng-show="showHeader">
+                <a class="navbar-brand pull-left hidden-md hidden-lg hidden-xl hidden-xxl" ng-show="checkSideBarOn() && !sidebarExpanded " ng-click="toggleSidebar()">
+                    <figure class="appLogo" ng-show="!sidebarExpanded">
+                        <img class="appLogoIconDinamic" alt="Incite®" />
+                    </figure>
+                    <span class="edin-sidebar-collapse" ng-show="!sidebarExpanded">
+                        <span>
+                            <i ng-class="{'icofont-dotted-left': sidebarExpanded, 'icofont-dotted-right': !sidebarExpanded}"></i>
+                        </span>
+                    </span>
+                </a>
+                <div class="p-relative" ng-class="{'container-fluid' : checkSideBarOn(), 'container': checkSideBarOff()}">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button ng-if="showHeader" type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#MainCollapse" aria-expanded="false" aria-controls="MainCollapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" ui-sref="/dashboard" ng-if="checkSideBarOff()">
+                            <figure class="appLogo">
+                                <img class="appLogoDinamic" alt="Incite®" src="img/_incite/incites.png"/>
+                            </figure>
+                        </a>
+                        <!-- !!! ************** !!! -->
+                        <!-- SMALL SCREENS MENU  -->
+                        <ul class="nav navbar-nav navbar-right mv0 hidden-lg hidden-xl hidden-xxl" ng-controller="userController" ng-show="showHeader">
+                            <li class="dropdown" style="display: inline-block" ng-if="___">
+                                <a class="dropdown-toggle user-notification i-link" ng-class="userSettings.messages.length > 0 ? '' : 'disabled'" title="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fas fa-bell"></i>
+                                    <i class="notification-number bg-alert" ng-show="userSettings.messages.length>0">{{userSettings.messages.length}}</i>
+                                </a>
+
+                                <ul class="dropdown-menu notifications-list" id="accordion">
+                                    <li ng-if="userSettings.messages.length == 0">
+                                        <p class="text-center text-muted" style="margin-bottom:0">
+                                            There are no notifications
+                                        </p>
+                                    </li>
+                                    <li ng-repeat="message in userSettings.messages">
+                                        <div class="notification">
+                                            <h5 class="i-link">
+                                                <strong data-toggle="collapse" href="#collapse-{{$index}}" data-parent="accordion">
+                                                    {{message.title}}
+                                                </strong>
+                                                <i class="fas fa-times dismiss-notification" ng-click="dismissMessage(message)"></i>
+                                            </h5>
+                                            <div id="collapse-{{$index}}" class="collapse">
+                                                <div ng-bind-html="message.message"></div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="has-icon pull-left">
+                                <a class="user-options i-link pr0">
+                                    <img ng-if="profilePictureUrl != '' && !userSettings.impersonate" ng-src="{{profilePictureUrl}}" data-toggle="modal" ng-href="#modal-profile" class="user-img" tooltip="Change Profile Picture" tooltip-placement="bottom" tooltip-append-to-body="true"/>
+                                    <img ng-if="profilePictureUrl == '' && !userSettings.impersonate" ng-src="{{userSettings.userIcon}}" data-toggle="modal" ng-href="#modal-profile" class="user-img" tooltip="Change Profile Picture" tooltip-placement="bottom" tooltip-append-to-body="true"/>
+                                    <span class="user-img" ng-if="userSettings.impersonate">
+                            <span tooltip="Impersonating {{userSettings.userLoggedIn}}" tooltip-placement="bottom" tooltip-append-to-body="true">
+                                <i class="fas fa-handshake"></i>
+                            </span>
+                        </span>
+                                </a>
+                            </li>
+                            <li class="text-right dropdown user-menu pull-left">
+                                <a class="dropdown-toggle user-options i-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span ng-if="!userSettings.impersonate" ng-bind="userSettings.userLoggedIn"></span>
+                                    <span ng-if="userSettings.impersonate" ng-bind="userSettings.userWhoImpersonatesFullname"></span>
+                                    <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu user-options-list">
+                                    <li ng-if="userSettings.clientInformation.externalLinks.accountButton.url!=null && userSettings.clientInformation.externalLinks.accountButton.url!=''">
+                                        <a class="btn btn-info" style="color:#fff !important;" href="{{userSettings.clientInformation.externalLinks.accountButton.url}}" target="_self">{{userSettings.clientInformation.externalLinks.accountButton.label}}</a>
+                                    </li>
+                                    <li>
+                                        <a ng-class="getClass('/help')" ui-sref="/helpVideos">
+                                            <i class="fas fa-life-ring"></i> Help
+                                        </a>
+                                    </li>
+                                    <li ng-if="userSettings.allowImpersonation && !userSettings.impersonate">
+                                        <a ng-click="loadImpersonateModal(0,50, true)">
+                                            <i class="fas fa-handshake"></i> Impersonate User</a>
+                                    </li>
+                                    <li ng-if="userSettings.impersonate">
+                                        <a ng-click="stopImpersonating()">
+                                            <i class="fas fa-handshake"></i> Stop Impersonating</a>
+                                    </li>
+                                    <li ng-if="userSettings.allRoles.length > 1 && userSettings.hasNoOverallRestriction != true && !userSettings.impersonate">
+                                        <a data-toggle="modal" ng-href="javascript:void();#modal-toggle-role" class="pb0">
+                                            <i class="fas fa-user"></i> Change Role
+                                            <span class="text-muted small">{{userSettings.role}}</span>
+                                        </a>
+                                    </li>
+                                    <li ng-if="userSettings.userWhoImpersonatesRoles.length > 1 && userSettings.userWhoImpersonateshasNoOverallRestriction != true && userSettings.impersonate">
+                                        <a data-toggle="modal" ng-href="javascript:void();#modal-toggle-role" class="pb0">
+                                            <i class="fas fa-user"></i> Change Role
+                                            <span class="text-muted small">{{userSettings.userWhoImpersonatesRole}}</span>
+                                        </a>
+                                    </li>
+                                    <li ng-if="(userSettings.allRoles.length == 1 || userSettings.hasNoOverallRestriction == true) && !userSettings.impersonate">
+                                        <a ng-href="" class="pb0">
+                                            <i class="fas fa-user"></i> {{userSettings.role}}
+                                        </a>
+                                    </li>
+                                    <li ng-if="(userSettings.userWhoImpersonatesRoles.length == 1 || userSettings.userWhoImpersonateshasNoOverallRestriction == true) && userSettings.impersonate">
+                                        <a ng-href="" class="pb0">
+                                            <i class="fas fa-user"></i> {{userSettings.userWhoImpersonatesRole}}
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a ng-if="userSettings.bypassedSso" data-toggle="modal" ng-href="javascript:void();#modal-password">
+                                            <i class="fa fa-key"></i> Change Password</a>
+                                    </li>
+                                    <li>
+                                        <a data-toggle="modal" ng-click="loadUserPreferenceStandards()" ng-href="javascript:void(0);#userPreferences">
+                                            <i class="fas fa-cog"></i> Preferences</a>
+                                    </li>
+                                    <li>
+                                        <a class="text-danger" ng-controller="LogoutCtrl as LC" ng-click="Logout()" title="Sign Out">
+                                            <i class="fas fa-sign-out-alt"></i> Sign Out
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse p0" id="MainCollapse">
+                        <div class="ei-nav-container" ng-include="'templates/header.html'">
+
+                        </div>
+                    </div><!-- /.navbar-collapse -->
+                </div>
+
+            </nav>
+            
+            <div ng-repeat="chat in mainPrivateChat" style="display:block;z-index:1001;" ng-show="chat.showChat"
+                class="chat-popup" id="myForm-{{chat.id}}">
+                <form class="form-container">
+                    <div ng-if="!chat.minimizeChat">
+                        <button type="button" class="close" ng-click="closePrivateChatForm(chat)"><span
+                                aria-hidden="true">&times;</span></button>
+                        <span class="pull-right c-pointer" ng-click="minimizePrivateChat(chat.id)"><i
+                                class="fas fa-window-minimize"></i></span>
+                        <p><strong>{{chat.firstName}} {{chat.lastName}}</strong></p>
+                        <div class="chat_textarea" ng-if="!chat.showNotification"
+                            schroll-bottom-private="chat.messageHistory">
+                            <p ng-repeat="msg in chat.messageHistory">
+                                <span>
+                                    <strong ng-if="msg.sender == 'system'" class="small">System</strong>
+                                    <strong ng-if="msg.sender == 'participant'" class="small">{{msg.name}}</strong>
+                                    <strong ng-if="msg.sender == 'me'" class="small">Me</strong>
+                                    <strong ng-if="msg.sender != 'me'" class="small">{{msg.name}}</strong>:{{msg.message}}
+                                </span>
+                            </p>
+                        </div>
+                        <div class="chat_textarea" ng-if="chat.showNotification">
+                            <p>{{chat.firstName}} {{chat.lastName}} is wanting to chat, do you want to respond?</p>
+                            <div class="btn-group btn-group-justified p9" style="border-spacing: 9px 0">
+                                <a class="btn btn-default" ng-click="declinePrivateChat(chat)">No</a>
+                                <a class="btn btn-danger" ng-click="acceptPrivateChat(chat.id);">Yes</a>
+                            </div>
+                        </div>
+                        <textarea ng-if="!chat.showNotification" ng-enter="chat_privateMessage(chat)" type="text" ng-model="chat.newMessage" class="form-control chat-textarea" placeholder="Type and hit enter to send message"></textarea>
+                        <button ng-if="!chat.showNotification" ng-click="chat_privateMessage(chat)" type="submit" class="btn btn-info btn-block">Send</button>
+                    </div>
+                    <div ng-if="chat.minimizeChat" ng-click="maximizePrivateChat(chat.id)" class="c-pointer"><strong>{{chat.firstName}} {{chat.lastName}}</strong></div>
+                </form>
+            </div>
+            <div class="userAlert" style="z-index:9999999">
+                <div ng-repeat="alert in userAlerts">
+                    <user-alert ng-model="alert"></user-alert>
+                </div>
+            </div>
+            <div ui-view="" class="container-fluid" id="AppContainer" ng-class="{'h100' : !showHeader, 'overflauto pb9' : $state.current.data.pageTitle == 'Home'}"></div>
+        </div>
+    </div>
+</div>
+
+<!--<div class="container footer-container" ng-if="checkSideBarOff()">
+    <div class="row">
+        <div class="col-md-12">
+            <footer class="footer" ng-show="showHeader">
+                <div class="footerContent">
+                    <div class="row">
+                        <div class="col-sm-5 col-md-4">
+                            <p class="small">&copy; {{copyrightYear}} <a href="https://www.educationincites.com" title="Education Incites&reg;">Education Incites</a><sup>&reg;</sup>. All rights reserved.</p>
+                        </div>
+                        <div class="col-sm-3 col-md-4 text-center district-name">
+                            <span class="small" title="{{userSettings.clientInformation.name}}" ng-bind="userSettings.clientInformation.name"></span>
+                        </div>
+                        <div class="col-sm-4 col-md-4">
+                            <figure class="pbei">
+                                <a href="https://www.educationincites.com" title="powered by Education Incites&reg;">
+                                    <img src="img/logo/ei-powered.svg" alt="powered by Education Incites &reg;"/>
+                                </a>
+                            </figure>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+</div>-->
+
+<!-- Modal Dropdown Options -->
+<div  id="addDropdownOptions" class="modal fade modal-autoh" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h5 class="modal-title">Add Dropdown Options</h5>
+            </div>
+
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-10 col-lg-offset-1">
+                        <div class="infinity row-vspace">
+                            <div class="infinity-grid infinity-grid-lg">
+                                <div class="infinity-header p0" style="height:2px;">
+                                    <div class="p0" style="width:60px;height:2px;"></div>
+                                    <div class="p0" style="height:2px;"></div>
+                                    <div class="p0" style="width:72px;height:2px;"></div>
+                                    </div>
+                                <div class="infinity-row" ng-repeat="(index,options) in dropdownModel[randomIdentifierGlobal].options">
+                                    <div>
+                                        <div class="infinity-radio">
+                                            <input ng-checked="options.selected" type="radio" id="dropDownCorrect-{{index}}" ng-click="correctAnswer(index, randomIdentifierGlobal)" name="dropdown-correct-answer"/>
+                                            <label for="dropDownCorrect-{{index}}"></label>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="input-group">
+                                            <input ng-show='!options.isLatex' type="text" class="form-control" ng-model="options.value"/>
+                                            <span ng-show='options.isLatex' style="width: 100%; min-height: 30px" value="{{options.value}}" id="eqInput-{{index}}" inputNo="{{index}}" eq-input-dropdown></span>
+
+                                            <span class="input-group-addon p0">
+                                                <a class="btn btn-default btn-sm" ng-click="openModalEquationSelectDropdown(index, randomIdentifierGlobal)">
+                                                    <i class="fas eicon ei-sigma"></i>
+                                                </a>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <span class="icons-group">
+                                            <a class="text-danger c-pointer text-muted" ng-click="removeOptionSelectDropdown(index, randomIdentifierGlobal)"><i class="far fa-trash-alt"></i> </a>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <a ng-click="addNewOptionSelectDropdown(randomIdentifierGlobal)" class="pull-right c-pointer row-vspace">Add Option</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn btn-sm btn-info"  ng-click="saveOptionsSelectDropdown(randomIdentifierGlobal)">Save</button>
+                <button class="btn btn-sm btn-default" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade modal-autoh modal-xl" id="privateCallModal" role="dialog" data-backdrop="static" data-keyboard="true" >
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" ng-controller="studentPrivateCallCtrl" ng-if="privateCallData.showModal">
+            <div class="modal-header">
+                <h5 class="modal-title">Private call</h5>
+                <button type="button" class="close" aria-label="Close" data-dismiss="modal" ng-click="stopShareVideoRoom()">
+                    <span aria-hidden="true">
+                        <span class="d-ib" style="font-size:14px">Close</span> <span class="d-ib" style="font-size: 24px;">&times;</span>
+                    </span>
+                </button>
+                <button class="btn btn-info" ng-click="togglePrivateCallShareScreen()"  ng-show="!shareVideoDataPrivateCall.shareScreen">Share
+                    Screen On</button>
+                <button class="btn btn-info" ng-click="togglePrivateCallShareScreen()" ng-show="shareVideoDataPrivateCall.shareScreen">Share
+                    Screen Off</button>
+            </div>
+            <div class="modal-body">
+                <div class="h100" id="privateCallDiv">
+                    <div id="videos-container-privateCall" class="videos-grid"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Help -->
+
+<div class="modal fade modal-fullscreen " id="helpModal" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">{{previewHelpFile.title}}</h5>
+                <button type="button" class="close" ng-click="closeHelpModalGlobal()" aria-label="Close">
+                    <span aria-hidden="true">
+                        <span class="d-ib" style="font-size:14px">Close</span> <span class="d-ib" style="font-size: 24px;">&times;</span>
+                    </span>
+                </button>
+            </div>
+            <div class="modal-body" id="btnPortalModalBody">
+                <div class="fake-device">
+                    <div class="videogular-container">
+                        <div ng-if="helpModalObj.type == 'video'" class="carousel-video">
+                            <div video-controls='true' class="video-container">
+                                <video preload="none" ng-poster="helpModalObj.fileCoverUrl" oncontextmenu="return false;" ngf-src="helpModalObj.fileUrl" style="min-width:800px;min-height:450px;margin:0 auto;width:100%;height:100%" controlsList="nodownload"></video>
+                                <video-controls></video-controls>
+                            </div>
+                        </div>
+                        <div ng-if="helpModalObj.type == 'pdf'" class="carousel-video">
+                            <div video-controls='true' class="video-container">
+                                <iframe  ng-src="{{trustSrc(helpModalObj.fileUrl)}}"></iframe>
+                            </div>
+                        </div>
+                        <div ng-if="helpModalObj.type == 'playlist'">
+                            <div class="col-sm-4 ei-tree-child" style="padding-left: 9px" >
+                                <ul class="ei-tree">
+                                    <li ng-repeat="video in helpModalObj.videos" class="ei-tree-node ei-tree-w-separator ml0">
+                                        <div class="ei-tree-item ei-tree-item-hoverable c-pointer" ng-click="ChangeVideoHelpModal(video)">
+                                            <div class="ei-tree-cover ei-tree-cover-sm f-align-self-center">
+                                                <img ngf-src="video.videoCoverFileURL" alt="{{video.videoTitle}}" ng-if="video.videoCoverFileURL"/>
+                                                <i class="text-muted fas fa-video fa-2x" ng-if="!video.videoCoverFileURL"></i>
+                                            </div>
+                                            <div class="ei-tree-text max-width-none min-width-auto">
+                                                <span>{{video.videoTitle}}</span> <br/>
+                                                <span class="text-muted">{{video.videoDuration}}</span>
+                                            </div>
+                                            <div class="ei-tree-actions-right f-align-self-center" ng-if="video.watched == true" style="padding-right: 9px">
+                                                <a class="text-success">
+                                                    <i class="fas fa-check-circle"></i>
+                                                </a>
+                                            </div>
+                                            <div class="ei-tree-actions-right f-align-self-center" ng-if="video.watched == false" style="padding-right: 9px">
+                                                <a class="text-info">
+                                                    <i class="fas fa-play"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-sm-8">
+                                <div class="panel panel-default set-height setH-breadcrumbs">
+
+                                    <div class="panel-body pw-header">
+                                        <span class="text-large row-vspace d-b">{{currentVideoHelpModal.videoTitle}}</span>
+                                        <div video-controls-playlist='true' test= "test" current-video="currentVideoHelpModal" class="video-container h-auto">
+                                            <!--<video class="video" ngf-src="slide.fileData" width="800" height="450" controlsList="nodownload" poster="img/ei-poster.png"></video>-->
+                                            <video preload="none" ng-attr-poster="{{currentVideoHelpModal.playerThumb}}" oncontextmenu="return false;" ngf-src="currentVideoHelpModal.playerUrl" style="min-width:800px;min-height:450px;margin:0 auto;width:100%;" controlsList="nodownload"></video>
+                                            <video-controls-playlist></video-controls-playlist>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade modal-autoh modal-prompt" tabindex="-1" role="dialog" id="confirmInstructorDelete" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <p>Are you sure you want to remove this instructor?  They will lose access to this Digital Classroom until added back by one of the remaining instructors.  If this is the last instructor they cannot be removed.</p>
+            </div>
+            <div class="modal-footer">
+                <div class="btn-group btn-group-justified">
+                    <a class="btn btn-default" data-dismiss="modal">No</a>
+                    <a class="btn btn-danger" data-dismiss="modal" ng-click="removeEditCoInstructor(instructorForRemoveData)">Yes</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade modal-autoh modal-prompt" tabindex="-1" role="dialog" id="confirmManualOverride" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <p>You have un-selected manual override, the next roster import will replace the enrolled kids with the kids sent for the merged classes. Do you wish to continue?</p>
+            </div>
+            <div class="modal-footer">
+                <div class="btn-group btn-group-justified">
+                    <a class="btn btn-default"  ng-click="refuseManualOverride()">No</a>
+                    <a class="btn btn-danger" ng-click="acceptManualOverride()">Yes</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal modal-page fade modal-autoh" id="selectRubric" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" aria-hidden="true">&times;</button>
+                <h5 class="modal-title">Select Rubric</h5>
+            </div>
+            <div class="modal-body" style="overflow:hidden;">
+                <div ng-if="itemAuthoringRubricType == 'addrubric'" class="col-md-12" ng-include="'subtabs/items/rubric-search.html'">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- modal user preferences -->
+<div ng-include="'subtabs/settings/user-preferences.html'"></div>
+<!-- <file-browser-modal data=""></file-browser-modal> -->
+<!-- <div ng-include="'_fileBrowser/fileBrowserModal.html'"></div> -->
+<!--modal confirm leaving page if form changed -->
+<div class="modal fade modal-autoh modal-prompt" tabindex="-1" role="dialog" id="assessmentChanged" data-backdrop="static"
+     data-keyboard="false">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <p>There are unsaved changes to this assessment</p>
+                <p>Are you sure you want to leave?</p>
+            </div>
+            <div class="modal-footer">
+                <div class="btn-group btn-group-justified">
+                    <a class="btn btn-default" data-dismiss="modal">No</a>
+                    <a class="btn btn-danger" data-dismiss="modal" ng-click="redirectResponse()">Yes</a>
+                </div>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<div class="modal fade modal-autoh modal-prompt" tabindex="-1" role="dialog" id="digitalClassChanged" data-backdrop="static"
+     data-keyboard="false">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <p>Your changes have not been saved.</p>
+                <p>Do you want to save them?</p>
+            </div>
+            <div class="modal-footer">
+                <div class="btn-group btn-group-justified">
+                    <a class="btn btn-default" data-dismiss="modal" ng-click="discardModalDigitalClassRoom()">No</a>
+                    <a class="btn btn-danger" data-dismiss="modal" ng-click="publishSession('saveAndReset')">Yes</a>
+                </div>
+            </div>
+        </div><!-- /.modal-content -->
+    </div>
+</div><!-- /.modal -->
+<!--modal-->
+<div class="modal fade modal-autoh" id="genericProgressBar" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-sm modal-vCentered">
+        <div class="modal-content">
+           <!-- <div class="modal-header">
+                <button type="button" class="close"  data-dismiss="modal">&times;</button>
+                <h5 class="modal-title">Progress</h5>
+            </div>-->
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-12 p18">
+                        <div ng-if="genericProgressData.message">
+                            <p class="text-large text-center" ng-bind-html="genericProgressData.message"></p>
+                            <div class="progress progress-lg">
+                                <div class="progress-bar progress-bar-success progress-bar-striped active dynamic" role="progressbar" aria-valuenow="{{genericProgressData.percentage}}" aria-valuemin="0" aria-valuemax="100" style="width:{{genericProgressData.percentage}}%">
+                                    {{genericProgressData.completed}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="progress progress-lg" ng-show="genericProgressData.progress!=null">
+                            <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="{{genericProgressData.progress}}" aria-valuemin="0" aria-valuemax="100" style="width:{{genericProgressData.progress}}%">
+                                {{genericProgressData.progress}}% Uploaded
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-danger"
+                    type="button" ng-click="cancellStudentResponseDownload = true">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade modal-autoh" id="multFileGenericProgressBar" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close"  data-dismiss="modal">&times;</button>
+                <h5 class="modal-title">Progress</h5>
+            </div>
+            <div class="modal-body">
+                <div class="row" >
+                    <span ng-repeat="genericProgressData in multFileGenericProgressData.files">
+                        <p>{{genericProgressData.name}}</p>
+                        <div class="progress progress-lg" >
+                            <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="{{genericProgressData.progress}}" aria-valuemin="0" aria-valuemax="100" style="width:{{genericProgressData.progress}}%">
+                                {{genericProgressData.progress}}% Uploaded
+                            </div>
+                        </div>
+                    </span>
+                </div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--modal-->
+<div class="modal fade modal-autoh" id="genericDownloadBar" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close"  data-dismiss="modal">&times;</button>
+                <h5 class="modal-title">Downloading...</h5>
+            </div>
+            <div class="modal-body">
+                <div class="row" >
+                    <div style="margin-left: 4px;margin-right: 4px;" class="progress progress-lg" ng-show="genericDownloadData.progress!=null">
+                        <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="{{genericDownloadData.progress}}" aria-valuemin="0" aria-valuemax="100" style="width:{{genericDownloadData.progress}}%">
+                            {{genericDownloadData.progress}}% Downloaded
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade  modal-page" id="ResourcePreviewModal" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog">
+        <div class="modal-content" ng-if="resourcePreviewModal.name && resourcePreviewModal.name != ''">
+            <div class="modal-header">
+                <h5>{{resourcePreviewModal.name}}</h5>
+                <div class="btn-group btn-group-spaced pull-right">
+                    <button class="btn btn-default" class="close" ng-click="resetResourcePreviewModal()" aria-label="Close" data-dismiss="modal">Close</button>
+                    <button class="btn btn-info" ng-click="downloadResource(resourcePreviewModal.resourceId,resourcePreviewModal.fileType,resourcePreviewModal.fileName,resourcePreviewModal.originalPath)">Download</button>
+                </div>
+            </div>
+            <div ng-if="ispdfTronFile" style="width: 100%; height: 90%;">
+                <div render-resource id={{resourcePreviewModal.url}} class="frames pdftronWebviewerIframe"></div>
+            </div>
+            <div ng-if="isOtherFile">
+                <div video-controls='true' class="video-container">
+                    <video ng-show="isOtherFile" autoplay="" name="media" oncontextmenu="return false;"
+                           ng-src="{{resourcePreviewModal.url}}"
+                           type="{{fileType}}"
+                           poster="img/mediaFile.svg">
+                        <source ng-src="{{resourcePreviewModal.url}}" type="{{resourcePreviewModal.fileType}}">
+                    </video>
+                    <video-controls></video-controls>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div style="z-index: 99999999;" class="modal fade modal-autoh modal-prompt" tabindex="-1" role="dialog" id="resourceToPdf" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <!-- <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div> -->
+            <div class="modal-body">
+                <p>Resource is converting to PDF!</p>
+            </div>
+            <div class="inline-loader" ng-if="show_sucker_resource"></div>
+            <div ng-show="showProgressBar" class="progress" style="margin: 10px;">
+                <div class="progress-bar progress-bar-success progress-bar-striped active dynamic"
+                    role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="5" style="width: 0%">
+                    <span id="current-progress"></span>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="btn-group btn-group-justified">
+                    <a class="btn btn-default" data-dismiss="modal">OK</a>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div>
+</div>
+
+<div ng-controller="myClassesfilePreviewController" class="modal fade modal-page" id="myClassesFilePreviewModal" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 id="Fname"></h5>
+                <div class="btn-group btn-group-spaced pull-right">
+                    <button class="btn btn-default" data-dismiss="modal">Close</button>                   
+                    <button class="btn btn-info" ng-click="downloadEditorBucketFile($event);">Download</button>
+                </div>
+            </div>
+            <div ng-show="ispdfTronFile" id="ispdfTronFile">
+                <div id="editorEmbedIframe"></div>
+            </div>
+            <div ng-show="isOtherFile" id="isOtherFile">
+                <div id="teach-file-view" style="width: 100%; height: 90%;"></div>
+            </div>           
+        </div>
+    </div>
+</div>
+<div class="modal fade modal-page" id="scanBubbleModal" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" onclick="utils.stopCamera()" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h5 class="modal-title">Bubble Sheet Scanner</h5>
+                </div>
+                <div class="modal-body modal-w-footer">
+                        <div ng-if="ScanBubble">
+                                <div ng-include="'js/scanner/scan_buble.html'"></div>
+                            </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="btn-group btn-group-spaced pull-right">
+                        <button class="btn btn-default" ng-click="resetResourcePreviewModal()">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+<div class="modal fade modal-autoh" tabindex="-1" role="dialog" id="joinZoomOptionModal" data-backdrop="static"
+data-keyboard="false">
+<div class="modal-dialog modal-sm" role="document" style="width:378px">
+   <div class="modal-content">
+       <div class="modal-body modal-w-footer">
+           <div class="p9 text-center">
+               <h1>
+                   <i class="icofont-ui-video-chat text-success mb18"></i>
+               </h1>
+               <p class="text-center mb18" style="font-size: 1.6rem">
+                   Select how you want to join the meeting:
+               </p>
+               <div class="p9">
+                  <ul class="list-group mb0 hovered-list">
+                       <li class="list-group-item" ng-repeat="option in joinStartOptions" ng-class="{'bb0' : $last}">
+                           <div class="infinity-radio">
+                               <input type="radio" id="{{option.id}}" name="zoomJoin" value="{{option.id}}" ng-model="zoomOptionModalInputData.type" >
+                               <label for="{{option.id}}">{{option.text}}</label>
+                           </div>
+                       </li>
+                   </ul>
+               </div>
+           </div>
+     </div>
+       <div class="modal-footer ph9 pb9">
+           <div class="btn-group btn-group-justified p9" style="border-spacing: 9px 0">
+               <a class="btn btn-default" data-dismiss="modal">Cancel</a>
+               <a class="btn btn-danger" ng-if="zoomOptionModalInputData.meetingSource == 'session'"  data-dismiss="modal" ng-click="joinZoomMeeting(zoomOptionModalInputData.digitalSessionId, zoomOptionModalInputData.type , 'session')">OK</a>
+               <a class="btn btn-danger" ng-if="zoomOptionModalInputData.meetingSource == 'classroom'" data-dismiss="modal" ng-click="joinZoomMeeting(zoomOptionModalInputData.digitalClassRoomId,zoomOptionModalInputData.type , 'classroom')">OK</a>
+           </div>
+       </div>
+   </div><!-- /.modal-content -->
+</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="modal fade modal-autoh" tabindex="-1" role="dialog" id="goOfflineZoomMeetingModal" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-sm" role="document" style="width:378px">
+        <div class="modal-content">
+            <div class="modal-body modal-w-footer">
+                <span>
+                    <div class="p9 text-center">
+                          <p class="text-danger"><i class="fas fa-exclamation-circle text-danger"></i>
+                             Taking this classroom/session offline will remove the automated announcements and the LIVE
+                             icon displayed on the student’s session or classroom.
+                             <br><br>
+                             This will not automatically end your Zoom meeting.
+                             <br><br>
+                             Click OK if you wish to continue
+                        </p>
+                    </div>
+                </span>
+            </div>
+            <div class="modal-footer ph9 pb9">
+                <div class="btn-group btn-group-justified p9" style="border-spacing: 9px 0">
+                    <a class="btn btn-default" data-dismiss="modal">Cancel</a>
+                    <a class="btn btn-info" data-dismiss="modal" 
+                       ng-click="changeZoomMeetingStatus(goOfflineZoomOptionModalData, 'Offline')">OK</a>
+                </div>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<script type="text/javascript" src="https://appfiles.educationincites.com/incite/js/vendor/modernizr-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script src="https://appfiles.educationincites.com/incite/jquery.min.js"></script>
+<script src="https://appfiles.educationincites.com/incite/js/html2canvasnew.min.js"></script>
+<script type="text/javascript" src="js/config.js"></script>
+<script type="text/javascript" src="js/jstimezonedetect/jstz.min.js"></script>
+<script type="text/javascript" src="https://appfiles.educationincites.com/incite/js/filesaver.js"></script>
+<script type="text/javascript" src="https://appfiles.educationincites.com/incite/js/html-docx.js"></script>
+<script src="https://appfiles.educationincites.com/incite/jquery.actual.min.js"></script>
+<script src="https://appfiles.educationincites.com/incite/spin.min.js"></script>
+<script src="https://appfiles.educationincites.com/incite/raphael-min.js"></script>
+<script src="https://appfiles.educationincites.com/incite/async.min.js"></script>
+<!--<script src="js/underscore-min.js"></script>-->
+<script src="https://appfiles.educationincites.com/incite/lodash.min.js"></script>
+<script src="https://appfiles.educationincites.com/incite/js/bootstrap.min.js"></script>
+<script src="https://appfiles.educationincites.com/incite/select2.full.min.js"></script>
+<script src="https://appfiles.educationincites.com/incite/js/bootstrap-colorpicker.js"></script>
+<script src="https://appfiles.educationincites.com/incite/js/jquery-ui.min.js"></script>
+<!--<script src="js/vendor/particles.js"></script>-->
+<script src="https://appfiles.educationincites.com/incite/angular.min.js"></script>
+<script src="https://appfiles.educationincites.com/incite/js/angular-bind-html-compile.js"></script>
+<script src="https://appfiles.educationincites.com/incite/js/imageupload.js"></script>
+<script src="https://appfiles.educationincites.com/incite/js/croppie.min.js"></script>
+<script src="https://appfiles.educationincites.com/incite/js/elasticQuery.js"></script>
+<script src="https://appfiles.educationincites.com/incite/js/angular-route.min.js"></script>
+<script src="https://appfiles.educationincites.com/incite/js/ui-bootstrap-tpls.min.js"></script>
+<script src='https://appfiles.educationincites.com/incite/js/textAngular-rangy.min.js'></script>
+<script src='https://appfiles.educationincites.com/incite/js/textAngular-sanitize.min.js'></script>
+<script src='https://appfiles.educationincites.com/incite/js/textAngular.min.js'></script>
+<script src="https://appfiles.educationincites.com/incite/js/vendor/mathquill.js"></script>
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/mathquill/0.10.1/mathquill.min.js"></script>-->
+<script src="https://appfiles.educationincites.com/incite/js/sortable.js"></script>
+<script src="https://appfiles.educationincites.com/incite/js/angular-ui-dashboard.js"></script>
+<script src="https://appfiles.educationincites.com/incite/js/angular-resource.js"></script>
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-resource/1.3.0/angular-resource.min.js"></script>-->
+<script src="<%= jaspersoftUrl %>"></script>
+<script src="https://appfiles.educationincites.com/incite/js/ng-videosharing-embed.min.js"></script>
+<script src="https://appfiles.educationincites.com/incite/js/angular-visualize-directive.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
+<script src="https://appfiles.educationincites.com/incite/js/moment.js"></script>
+<script src="https://appfiles.educationincites.com/incite/js/calendarScript/rrule.js"></script>
+<script src="https://appfiles.educationincites.com/incite/js/calendarScript/interact.js"></script>
+<script src="https://appfiles.educationincites.com/incite/js/angular-bootstrap-calendar.min.js"></script>
+<script src="https://appfiles.educationincites.com/incite/js/angular-bootstrap-calendar-tpls.min.js"></script>
+<script src="https://appfiles.educationincites.com/incite/js/daterangepicker.js"></script>
+<script src="https://appfiles.educationincites.com/incite/js/videoShare/RecordRTC.js"></script>
+<script src="https://appfiles.educationincites.com/incite/js/videoShare/hark.js"></script>
+<link rel="stylesheet" href="/css/tribute.css" />
+<script src="https://appfiles.educationincites.com/incite/js/tribute.js"></script>
+<script src="https://appfiles.educationincites.com/incite/angular-filter.min.js"></script>
+
+<!-- Include Embed.ly platform JS. -->
+<script src="https://appfiles.educationincites.com/incite/platform.js" charset="UTF-8"></script>
+
+<!-- Froala Editor -->
+<link href="https://appfiles.educationincites.com/incite/js/vendor/froala-editor/css/froala_editor.pkgd.min.css" rel="stylesheet" type="text/css" />
+<link href="https://appfiles.educationincites.com/incite/js/vendor/froala-editor/css/froala_style.min.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="https://appfiles.educationincites.com/incite/js/vendor/froala-editor/js/froala_editor.min.js"></script>
+
+<script type="text/javascript" src="https://appfiles.educationincites.com/incite/js/vendor/froala-editor/js/plugins/align.min.js"></script>
+<script type="text/javascript" src="https://appfiles.educationincites.com/incite/js/vendor/froala-editor/js/plugins/char_counter.min.js"></script>
+<script type="text/javascript" src="https://appfiles.educationincites.com/incite/js/vendor/froala-editor/js/plugins/code_beautifier.min.js"></script>
+<link rel="stylesheet" href="https://appfiles.educationincites.com/incite/js/vendor/froala-editor/css/plugins/code_view.min.css">
+<script type="text/javascript" src="https://appfiles.educationincites.com/incite/js/vendor/froala-editor/js/plugins/code_view.min.js"></script>
+<script type="text/javascript" src="https://appfiles.educationincites.com/incite/js/vendor/froala-editor/js/plugins/colors.min.js"></script>
+<script type="text/javascript" src="https://appfiles.educationincites.com/incite/js/vendor/froala-editor/js/plugins/draggable.min.js"></script>
+<link rel="stylesheet" href="https://appfiles.educationincites.com/incite/js/vendor/froala-editor/css/third_party/embedly.min.css">
+<script type="text/javascript" src="https://appfiles.educationincites.com/incite/js/vendor/froala-editor/js/third_party/embedly.min.js"></script>
+<script type="text/javascript" src="https://appfiles.educationincites.com/incite/js/vendor/froala-editor/js/plugins/emoticons.min.js"></script>
+<script type="text/javascript" src="https://appfiles.educationincites.com/incite/js/vendor/froala-editor/js/plugins/entities.min.js"></script>
+<script type="text/javascript" src="https://appfiles.educationincites.com/incite/js/vendor/froala-editor/js/plugins/file.min.js"></script>
+<script type="text/javascript" src="https://appfiles.educationincites.com/incite/js/vendor/froala-editor/js/plugins/font_size.min.js"></script>
+<script type="text/javascript" src="https://appfiles.educationincites.com/incite/js/vendor/froala-editor/js/plugins/font_family.min.js"></script>
+<script type="text/javascript" src="https://appfiles.educationincites.com/incite/js/vendor/froala-editor/js/plugins/fullscreen.min.js"></script>
+<script type="text/javascript" src="https://appfiles.educationincites.com/incite/js/vendor/froala-editor/js/plugins/image.min.js"></script>
+<script type="text/javascript" src="https://appfiles.educationincites.com/incite/js/vendor/froala-editor/js/plugins/image_manager.min.js"></script>
+<script type="text/javascript" src="https://appfiles.educationincites.com/incite/js/vendor/froala-editor/js/plugins/line_breaker.min.js"></script>
+<script type="text/javascript" src="https://appfiles.educationincites.com/incite/js/vendor/froala-editor/js/plugins/inline_style.min.js"></script>
+<script type="text/javascript" src="https://appfiles.educationincites.com/incite/js/vendor/froala-editor/js/plugins/link.min.js"></script>
+<script type="text/javascript" src="https://appfiles.educationincites.com/incite/js/vendor/froala-editor/js/plugins/lists.min.js"></script>
+<script type="text/javascript" src="https://appfiles.educationincites.com/incite/js/vendor/froala-editor/js/plugins/paragraph_format.min.js"></script>
+<script type="text/javascript" src="https://appfiles.educationincites.com/incite/js/vendor/froala-editor/js/plugins/paragraph_style.min.js"></script>
+<script type="text/javascript" src="https://appfiles.educationincites.com/incite/js/vendor/froala-editor/js/plugins/print.min.js"></script>
+<script type="text/javascript" src="https://appfiles.educationincites.com/incite/js/vendor/froala-editor/js/plugins/quick_insert.min.js"></script>
+<script type="text/javascript" src="https://appfiles.educationincites.com/incite/js/vendor/froala-editor/js/plugins/quote.min.js"></script>
+<script type="text/javascript" src="https://appfiles.educationincites.com/incite/js/vendor/froala-editor/js/plugins/table.min.js"></script>
+<script type="text/javascript" src="https://appfiles.educationincites.com/incite/js/vendor/froala-editor/js/plugins/save.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://appfiles.educationincites.com/incite/js/vendor/froala-editor/css/plugins/special_characters.min.css" />
+<script type="text/javascript" src="https://appfiles.educationincites.com/incite/js/vendor/froala-editor/js/plugins/special_characters.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://appfiles.educationincites.com/incite/js/vendor/froala-editor/css/third_party/spell_checker.min.css" />
+<script type="text/javascript" src="https://appfiles.educationincites.com/incite/js/vendor/froala-editor/js/plugins/url.min.js"></script>
+<script type="text/javascript" src="https://appfiles.educationincites.com/incite/js/vendor/froala-editor/js/plugins/video.min.js"></script>
+<script type="text/javascript" src="https://appfiles.educationincites.com/incite/js/vendor/froala-editor/js/plugins/word_paste.min.js"></script>
+
+<!-- PDF Export -->
+<script type="text/javascript" src="https://appfiles.educationincites.com/incite/html2pdf.bundle.js"></script>
+
+<!-- Codox -->
+<link href="https://cdn1.codox.io/lib/css/wave.client.css" rel="stylesheet">
+<script src="https://app.codox.io/plugins/wave.client.js?apiKey=6dc527ed-6117-4d2e-84a5-d5c289f6e936&app=froala" type="text/javascript"></script>
+
+<!-- Wiris (MathType, ChemType) -->
+<script src="https://appfiles.educationincites.com/incite/js/vendor/froala-editor/js/third_party/mathtype-froala3.js"></script>
+
+<!-- Web Spell-Checker -->
+<script type="text/javascript" src="https://svc.webspellchecker.net/spellcheck31/wscbundle/wscbundle.js"></script>
+<script>
+    window.WEBSPELLCHECKER_CONFIG = {
+        autoSearch: true,
+        autoDestroy: true,
+        // autoStart: false,
+        serviceId: "Kp9nrUYrz5o2HLA",
+    };
+</script>
+
+<!-- TUI image editor -->
+<link href="https://appfiles.educationincites.com/incite/js/vendor/froala-editor/css/third_party/image_tui.min.css" rel="stylesheet" type="text/css" />
+<link href="https://appfiles.educationincites.com/incite/js/vendor/tui-image-editor/tui-image-editor.min.css" rel="stylesheet" type="text/css" />
+<link href="https://appfiles.educationincites.com/incite/js/vendor/tui-color-picker/tui-color-picker.min.css" rel="stylesheet" type="text/css" />
+
+<!-- Include TUI JS. -->
+<script type="text/javascript" src="https://appfiles.educationincites.com/incite/fabric.min.js"></script>
+<script type="text/javascript" src="https://appfiles.educationincites.com/incite/tui-code-snippet.min.js"></script>
+<script type="text/javascript" src="https://appfiles.educationincites.com/incite/tui-image-editor.min.js"></script>
+<script type="text/javascript" src="https://appfiles.educationincites.com/incite/js/vendor/froala-editor/js/third_party/image_tui.min.js"></script>
+
+<!-- Code Mirror -->
+<link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.css"
+/>
+<link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/froala-editor@3.2.1/css/plugins/code_view.css"
+/>
+
+<script
+    type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.js"
+></script>
+<script
+    type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/mode/xml/xml.min.js"
+></script>
+<script src="https://cdn.jsdelivr.net/npm/froala-editor@3.2.1/js/plugins/code_view.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/froala-pages@latest/js/froala_pages.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/froala-pages@latest/js/pages_design_blocks_pkgd.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/froala-pages@latest/css/froala_pages.min.css">
+<!-- Froala Editor -->
+
+<!-- AWS -->
+<script src="https://appfiles.educationincites.com/incite/js/vendor/aws-sdk-2.731.0.min.js"></script>
+
+<!-- CryptoJS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/core.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/md5.js"></script>
+
+<script src="js/main.js"></script>
+<script src="services/error-reporter.service.js"></script>
+<script src="services/environment.service.js"></script>
+<script src="services/crypto.service.js"></script>
+<script src="services/crypto.service.js"></script>
+<script src="services/work-mode.service.js"></script>
+<script src="controllers/assessments/external-assessment.service.js"></script>
+<script src="controllers/homeCtrl.js"></script>
+<script src="controllers/itemsCtrls.js"></script>
+
+<!--<script src="controllers/dashboardCtrls.js"></script>-->
+<script src="controllers/settingsCtrls.js"></script>
+<script src="controllers/programsCtrl.js"></script>
+<script src="controllers/programsDataEntryCtrl.js"></script>
+<script src="controllers/FPLiteracyCtrl.js"></script>
+<script src="controllers/reportsCtrls.js"></script>
+<script src="controllers/dataCtrls.js"></script>
+<script src="controllers/groupsCtrls.js"></script>
+<script src="controllers/initController.js"></script>
+<script src="controllers/loginFailureController.js"></script>
+<script src="controllers/helpCtrl.js"></script>
+<script src="controllers/tutorialsPlayerCtrl.js"></script>
+<script src="controllers/userPreferencesCtrl.js"></script>
+<script src="controllers/proctorCtrl.js"></script>
+<script src="controllers/browseNewAssessmentCtrl.js"></script>
+<script src="controllers/manualScoringCtrl.js"></script>
+<script src="controllers/testScoreEntryCtrl.js"></script>
+<script src="controllers/testManagerCtrl.js"></script>
+<script src="controllers/editAssessmentsCtrl.js"></script>
+<script src="controllers/assessmentsCtrl.js"></script>
+<script src="controllers/dataBankingCtrl.js"></script>
+<script src="controllers/bubbleSheetsCtrl.js"></script>
+<script src="controllers/printAssessmentCtrl.js"></script>
+<script src="controllers/searchResourceCtrl.js"></script>
+<script src="controllers/createResourceCtrl.js"></script>
+<script src="controllers/searchRubricCtrl.js"></script>
+<script src="controllers/createRubricCtrl.js"></script>
+<script src="controllers/workFlowCtrl.js"></script>
+<script src="controllers/securityCtrl.js"></script>
+<script src="controllers/publishCtrl.js"></script>
+<script src="controllers/newLayoutCtrl.js"></script>
+<script src="controllers/contentCtrl.js"></script>
+<script src="controllers/standardsCtrl.js"></script>
+<script src="controllers/layoutItemsCtrl.js"></script>
+<script src="controllers/items/itemsPublishMultipleChoiceCtrl.js"></script>
+<script src="controllers/items/itemsPublishShortAnswerCtrl.js"></script>
+<script src="controllers/items/itemsPublishFlipbookCtrl.js"></script>
+<script src="controllers/items/itemsPublishDropdownCtrl.js"></script>
+<script src="controllers/items/itemsPublishTextEntryCtrl.js"></script>
+<script src="controllers/items/itemsPublishTrueFalseCtrl.js"></script>
+<script src="controllers/items/itemsPublishEvidenceBasedSelectedResponseCtrl.js"></script>
+<script src="controllers/items/itemsPublishMultiPartCtrl.js"></script>
+<script src="controllers/items/itemsPublishNumberlineCtrl.js"></script>
+<script src="controllers/items/itemsPublishGraphingPlacePointCtrl.js"></script>
+<script src="controllers/items/itemsPublishGraphingPlaceLineCtrl.js"></script>
+<script src="controllers/items/itemsPublishSelectTextCtrl.js"></script>
+<script src="controllers/items/itemsPublishMatchingCtrl.js"></script>
+<script src="controllers/items/itemsPublishFillTableCtrl.js"></script>
+<script src="controllers/items/itemsPublishMultiplePartCtrl.js"></script>
+<script src="controllers/items/itemsPublishClassificationCtrl.js"></script>
+<script src="controllers/items/itemsPublishSelectDropdownMultiCtrl.js"></script>
+<script src="controllers/items/itemsPublishSelectDropdownCtrl.js"></script>
+<script src="controllers/items/itemsPublishHotspotCtrl.js"></script>
+<script src="controllers/items/itemsPublishExplicitConstructedResponseCtrl.js"></script>
+<script src="controllers/itemsBrowseCtrl.js"></script>
+<script src="controllers/layoutsDemoCtrl.js"></script>
+<script src="controllers/calendarCtrl.js"></script>
+<script src="controllers/resetCtrl.js"></script>
+<script src="controllers/layoutStandardsSearchCtrl.js"></script>
+<script src="controllers/itemsCtrl.js"></script>
+<script src="controllers/standardsSearchModalCtrl.js"></script>
+<script src="controllers/printBlueprintCtrl.js"></script>
+<script src="controllers/assignResourcesCtrl.js"></script>
+<script src="controllers/proctorFlipbookCtrl.js"></script>
+
+<script src="controllers/curriculum/curriculumCtrl.js"></script>
+
+<script src="services/file-repository.service.js"></script>
+<script src="services/digital-file-repository.service.js"></script>
+
+<script src="services/fileTypeIcons.service.js"></script>
+
+
+<script src="services/digital-file-repository.service.js"></script>
+
+<script src="confirm-modal/confirm-modal.controller.js"></script>
+<script src="confirm-modal/confirm-modal.js"></script>
+
+<!-- Admin -->
+<script src="controllers/admin/templates/create/template.api.js"></script>
+
+<!-- Admin -->
+
+<!-- Editor -->
+<script src="controllers/pl/editor/editor.service.js"></script>
+<script src="controllers/pl/editor/editor-command.service.js"></script>
+<script src="controllers/pl/editor/editor-options-builder.service.js"></script>
+<!-- Editor -->
+
+<script src="controllers/banners/banners.directive.js"></script>
+
+<!-- Better Grid -->
+<script src="better-grid/better-grid.controller.js"></script>
+<script src="better-grid/better-grid.directive.js"></script>
+
+<!-- Better Modal -->
+<script src="better-modal/better-modal.js"></script>
+
+<!-- Add users modal -->
+<script src="add-users-modal/add-users-modal.controller.js"></script>
+
+<!-- Announcements -->
+<script src="announcements/announcement.js"></script>
+<script src="announcements/announcements.controller.js"></script>
+<script src="announcements/announcements.directive.js"></script>
+<script src="announcements/edit-modal.controller.js"></script>
+
+<!-- Attributes -->
+<script src="attributes/attributes-modal.controller.js"></script>
+
+<!-- Banner -->
+<script src="banner/banner.js"></script>
+<script src="banner/banner.directive.js"></script>
+<script src="banner/existing-banners-modal.controller.js"></script>
+
+<!-- Discussion Topics -->
+<script src="controllers/discussion-topics/comments/comment.service.js"></script>
+<script src="controllers/discussion-topics/comments/comments.directive.js"></script>
+<script src="controllers/discussion-topics/comments/delete-reply-modal.controller.js"></script>
+<script src="controllers/discussion-topics/comments/reply-modal.controller.js"></script>
+<script src="controllers/discussion-topics/discussion-topics.api.js"></script>
+<script src="controllers/discussion-topics/list/list-item.service.js"></script>
+<script src="controllers/discussion-topics/list/list.directive.js"></script>
+<script src="controllers/discussion-topics/manage-groups/delete-modal.controller.js"></script>
+<script src="controllers/discussion-topics/manage-groups/edit-modal.controller.js"></script>
+<script src="controllers/discussion-topics/manage-groups/manage-groups.directive.js"></script>
+<script src="controllers/discussion-topics/manage-groups/manage-groups.api.js"></script>
+<script src="controllers/discussion-topics/manage-topics/delete-modal.controller.js"></script>
+<script src="controllers/discussion-topics/manage-topics/edit-modal.controller.js"></script>
+<script src="controllers/discussion-topics/manage-topics/manage-topics.directive.js"></script>
+<script src="controllers/discussion-topics/tabs/tabs.directive.js"></script>
+<!-- End Discussion Topics -->
+
+<!-- Icons -->
+<script src="icons-modal/icons-modal.controller.js"></script>
+
+<!-- Radio list -->
+<script src="radio-list/radio-list.controller.js"></script>
+<script src="radio-list/radio-list.directive.js"></script>
+
+<!-- Visible tabs -->
+<script src="visible-tabs/visible-tabs.controller.js"></script>
+<script src="visible-tabs/visible-tabs.directive.js"></script>
+
+<!-- Teach -->
+<script src="controllers/teach/factories/better-dropdown.js"></script>
+<script src="controllers/teach/factories/event.js"></script>
+<script src="controllers/teach/factories/node.js"></script>
+<script src="controllers/teach/factories/ui-navigator.js"></script>
+<script src="controllers/teach/factories/TeachCatalogViewCourse.js"></script>
+<script src="controllers/teach/factories/TeachCatalogViewUnit.js"></script>
+<script src="controllers/teach/factories/TeachCatalogViewTopic.js"></script>
+<script src="controllers/teach/factories/TeachCatalogViewLesson.js"></script>
+<script src="controllers/teach/banner.api.js"></script>
+<script src="controllers/teach/course.service.js"></script>
+<script src="controllers/teach/factories.js"></script>
+<script src="controllers/teach/services.js"></script>
+<script src="controllers/teach/TeachAdminCtrls.js"></script>
+<script src="controllers/teach/TeachDigitalClassroomsCtrl.js"></script>
+<script src="controllers/teach/TeachClassesCtrls.js"></script>
+<script src="controllers/teach/TeachMyClassesCtrl.js"></script>
+<script src="controllers/teach/copyClassroomCtrl.js"></script>
+<script src="controllers/teach/admin/course-create/create.controller.js"></script>
+<script src="controllers/teach/admin/course-create/create.config.js"></script>
+<script src="controllers/teach/admin/course-create/view/view.controller.js"></script>
+<script src="controllers/teach/admin/courses/courses.config.js"></script>
+<script src="controllers/teach/admin/courses/courses.controller.js"></script>
+<script src="controllers/teach/modals/AnnouncementDeleteModalCtrl.js"></script>
+<script src="controllers/teach/modals/AnnouncementEditModalCtrl.js"></script>
+<script src="controllers/teach/modals/TeachViewPreviewModalCtrl.js"></script>
+<script src="controllers/teach/modals/TeachAttributeModalCtrl.js"></script>
+<script src="controllers/teach/modals/TeachCourseIconModalCtrl.js"></script>
+<script src="controllers/teach/directives/select2.js"></script>
+<script src="controllers/teach/directives/navigator.js"></script>
+<script src="controllers/teach/directives/navigatorMenu.js"></script>
+<script src="controllers/teach/directives.js"></script>
+<script src="controllers/teach/fileManagerDirective.js"></script>
+<script src="controllers/teach/modals/build-pages/build-pages-modal.controller.js"></script>
+
+<!-- Learn -->
+<script src="controllers/teach/learn/discussion-topics/manage-topics/manage-topics.directive.js"></script>
+<script src="controllers/teach/learn/discussion-topics/manage-topics/edit/edit.controller.js"></script>
+<script src="controllers/teach/learn/discussion-topics/manage-topics/delete/delete.controller.js"></script>
+<script src="controllers/teach/learn/discussion-topics/list/list-item.service.js"></script>
+<script src="controllers/teach/learn/discussion-topics/list/list.directive.js"></script>
+<script src="controllers/teach/learn/discussion-topics/comments/comments.directive.js"></script>
+<script src="controllers/teach/learn/classroom.api.js"></script>
+<script src="controllers/teach/learn/instructor.js"></script>
+<script src="controllers/teach/learn/participant.js"></script>
+<script src="controllers/teach/learn/announcements/announcements.controller.js"></script>
+<script src="controllers/teach/learn/linking/linkStuff.controller.js"></script>
+<script src="_teach/Courses/Grading/gradingGrid.controller.js"></script>
+
+<!-- Student portal preview -->
+<script src="controllers/teach/student-portal-preview/student-portal-preview.controller.js"></script>
+<script src="controllers/teach/student-portal-preview/student-portal-preview-button.directive.js"></script>
+
+<script src="controllers/pl/services.js"></script>
+<script src="controllers/pl/factories.js"></script>
+
+<!-- PL -->
+<script src="controllers/pl/pl.config.js"></script>
+<script src="controllers/pl/pl.controller.js"></script>
+<script src="controllers/pl/pl-assessments-results.api.js"></script>
+<script src="controllers/pl/pl-assignments-results.api.js"></script>
+<script src="controllers/pl/author.service.js"></script>
+<script src="controllers/pl/modal.service.js"></script>
+<script src="controllers/pl/promise.service.js"></script>
+<script src="controllers/pl/jq-date-picker.service.js"></script>
+<script src="controllers/pl/jq-date-picker.directive.js"></script>
+<script src="controllers/pl/course-content.service.js"></script>
+<script src="controllers/pl/pl-grading.api.js"></script>
+
+<!-- PL Admin -->
+<script src="controllers/pl/admin/admin.config.js"></script>
+<script src="controllers/pl/admin/admin.controller.js"></script>
+<script src="controllers/pl/admin/assessments/assessments.config.js"></script>
+<script src="controllers/pl/admin/assessments/assessments.controller.js"></script>
+<script src="controllers/pl/admin/courses/courses.config.js"></script>
+<script src="controllers/pl/admin/courses/courses.controller.js"></script>
+<script src="controllers/pl/admin/courses/view-modal.controller.js"></script>
+<script src="controllers/pl/admin/course-create/attribute.service.js"></script>
+<!-- <script src="controllers/pl/admin/course-create/create.config.js"></script>
+<script src="controllers/pl/admin/course-create/create.controller.js"></script> -->
+<script src="_professional-learning/admin/create/create.config.js"></script>
+<script src="_professional-learning/admin/create/create.controller.js"></script>
+<script src="_professional-learning/admin/create/assessment.api.v2.js"></script>
+<script src="_professional-learning/admin/create/assignment.api.v2.js"></script>
+<script src="_professional-learning/admin/create/course.api.v2.js"></script>
+<script src="_professional-learning/admin/create/course.v2.js"></script>
+<script src="_professional-learning/admin/create/files.api.v2.js"></script>
+<script src="_professional-learning/admin/create/module.api.v2.js"></script>
+<script src="_professional-learning/admin/create/module.v2.js"></script>
+<script src="_professional-learning/admin/create/profile/banner.api.js"></script>
+<script src="_professional-learning/admin/create/profile/profile.controller.js"></script>
+<script src="_professional-learning/admin/create/profile/profile.directive.js"></script>
+<script src="_professional-learning/admin/create/profile/overview/overview.controller.js"></script>
+<script src="_professional-learning/admin/create/profile/overview/overview.directive.js"></script>
+<script src="_professional-learning/admin/create/profile/icons/icons.directive.js"></script>
+<script src="_professional-learning/admin/create/profile/facilitators/list.directive.js"></script>
+<script src="_professional-learning/admin/create/profile/roster/list.directive.js"></script>
+<script src="_professional-learning/admin/create/discussion-topics/comments/comments.directive.js"></script>
+<script src="_professional-learning/admin/create/discussion-topics/discussion-topics.controller.js"></script>
+<script src="_professional-learning/admin/create/discussion-topics/discussion-topics.directive.js"></script>
+<script src="_professional-learning/admin/create/discussion-topics/list/list.directive.js"></script>
+<script src="_professional-learning/admin/create/discussion-topics/manage-topics/delete/delete.controller.js"></script>
+<script src="_professional-learning/admin/create/discussion-topics/manage-topics/edit/edit.controller.js"></script>
+<script src="_professional-learning/admin/create/discussion-topics/manage-topics/manage-topics.directive.js"></script>
+<script src="_professional-learning/admin/create/calendar/calendar.controller.js"></script>
+<script src="_professional-learning/admin/create/calendar/calendar.directive.js"></script>
+<script src="_professional-learning/admin/create/instructor-notes/instructor-notes.controller.js"></script>
+<script src="_professional-learning/admin/create/instructor-notes/instructor-notes.directive.js"></script>
+<script src="_professional-learning/admin/create/modules/manage/assessments-editor/assessment.js"></script>
+<script src="_professional-learning/admin/create/modules/manage/assessments-editor/assessments-editor.controller.js"></script>
+<script src="_professional-learning/admin/create/modules/manage/assessments-editor/assessments-editor.directive.js"></script>
+<script src="_professional-learning/admin/create/modules/manage/assignments-editor/assignment.js"></script>
+<script src="_professional-learning/admin/create/modules/manage/assignments-editor/assignments-editor.controller.js"></script>
+<script src="_professional-learning/admin/create/modules/manage/assignments-editor/assignments-editor.directive.js"></script>
+<script src="_professional-learning/admin/create/modules/manage/assessments-editor/assessment-picker/assessment-picker-modal.controller.js"></script>
+<script src="_professional-learning/admin/create/modules/manage/attachments/attachments.controller.js"></script>
+<script src="_professional-learning/admin/create/modules/manage/attachments/attachments.directive.js"></script>
+<script src="_professional-learning/admin/create/modules/manage/manage.controller.js"></script>
+<script src="_professional-learning/admin/create/modules/manage/manage.directive.js"></script>
+<script src="_professional-learning/admin/create/modules/manage/delete/delete.controller.js"></script>
+<script src="_professional-learning/admin/create/modules/manage/requirement/requirement.controller.js"></script>
+<script src="_professional-learning/admin/create/modules/create.controller.js"></script>
+<script src="_professional-learning/admin/create/modules/create.directive.js"></script>
+<script src="_professional-learning/admin/create/modules/overview/overview.controller.js"></script>
+<script src="_professional-learning/admin/create/modules/overview/overview.directive.js"></script>
+<script src="controllers/pl/admin/course-create/assessment/ass-picker-modal.controller.js"></script>
+<script src="controllers/pl/admin/course-create/assessment/assessment.api.js"></script>
+<script src="controllers/pl/admin/course-create/assessment/assessment.service.js"></script>
+<script src="controllers/pl/admin/course-create/assessment/overview.directive.js"></script>
+<script src="controllers/pl/admin/course-create/assignment/assignment.api.js"></script>
+<script src="controllers/pl/admin/course-create/assignment/assignment.service.js"></script>
+<script src="controllers/pl/admin/course-create/assignment/overview.directive.js"></script>
+<script src="controllers/pl/admin/course-create/course/course.api.js"></script>
+<script src="controllers/pl/admin/course-create/course/course.service.js"></script>
+<script src="controllers/pl/admin/course-create/course/announcements.directive.js"></script>
+<script src="controllers/pl/admin/course-create/course/attributes-modal.controller.js"></script>
+<script src="controllers/pl/admin/course-create/course/attributes.directive.js"></script>
+<script src="controllers/pl/admin/course-create/course/content.directive.js"></script>
+<script src="controllers/pl/admin/course-create/course/discussion-topics.directive.js"></script>
+<script src="controllers/pl/admin/course-create/course/facilitators.directive.js"></script>
+<script src="controllers/pl/admin/course-create/course/instructor-notes.directive.js"></script>
+<!-- <script src="controllers/pl/admin/course-create/course/overview.directive.js"></script> -->
+<script src="controllers/pl/admin/course-create/course/registration.directive.js"></script>
+<script src="controllers/pl/admin/course-create/course/roster.directive.js"></script>
+<script src="controllers/pl/admin/course-create/course/hidden-content/hidden-content.directive.js"></script>
+<script src="controllers/pl/admin/course-create/module/module.api.js"></script>
+<script src="controllers/pl/admin/course-create/module/module.service.js"></script>
+<script src="controllers/pl/admin/course-create/module/overview.directive.js"></script>
+<script src="controllers/pl/admin/course-create/module/grid/grid.directive.js"></script>
+<script src="controllers/pl/admin/course-create/module/manage/manage.directive.js"></script>
+<script src="controllers/pl/admin/course-create/module/manage/delete-ass-modal.controller.js"></script>
+<script src="controllers/pl/admin/course-create/navigator/navigator.js"></script>
+<script src="controllers/pl/admin/course-create/view/view.controller.js"></script>
+<script src="controllers/pl/admin/course-create/view/my-assignments/my-assignments.directive.js"></script>
+<script src="controllers/pl/admin/course-create/view/my-assessments/my-assessments.directive.js"></script>
+<script src="controllers/pl/admin/rubrics/rubrics.config.js"></script>
+<script src="controllers/pl/admin/rubrics/create.controller.js"></script>
+<script src="controllers/pl/admin/rubrics/rubrics.controller.js"></script>
+<script src="controllers/pl/admin/users/users.config.js"></script>
+<script src="controllers/pl/admin/users/edit.controller.js"></script>
+<script src="controllers/pl/admin/users/users.controller.js"></script>
+<!-- End PL Admin -->
+
+<!-- PL Catalog -->
+<script src="controllers/pl/catalog/catalog.config.js"></script>
+<script src="controllers/pl/catalog/catalog.controller.js"></script>
+<script src="controllers/pl/catalog/modals/share-module.controller.js"></script>
+<script src="controllers/pl/catalog/modals/copy-target.controller.js"></script>
+<script src="controllers/pl/catalog/modals/delete-target.controller.js"></script>
+<script src="controllers/pl/catalog/view/assessments-grading/assessments-grading.directive.js"></script>
+<script src="controllers/pl/catalog/view/assessments.api.js"></script>
+<script src="controllers/pl/catalog/view/assignment-resources/assignment-resources.directive.js"></script>
+<script src="controllers/pl/catalog/view/assignments-grading/assignments-grading.directive.js"></script>
+<script src="controllers/pl/catalog/view/content-display/content-display.controller.js"></script>
+<script src="controllers/pl/catalog/view/content-display/content-display.directive.js"></script>
+<script src="controllers/pl/catalog/view/course-content/course-content.directive.js"></script>
+<script src="controllers/pl/catalog/view/course.config.js"></script>
+<script src="controllers/pl/catalog/view/course.controller.js"></script>
+<script src="controllers/pl/catalog/view/events/events.directive.js"></script>
+<script src="controllers/pl/catalog/view/home/home.controller.js"></script>
+<script src="controllers/pl/catalog/view/home/home.directive.js"></script>
+<script src="controllers/pl/catalog/view/my-assessments/my-assessments.directive.js"></script>
+<script src="controllers/pl/catalog/view/my-assignments/my-assignments.directive.js"></script>
+<script src="controllers/pl/catalog/view/navigator.directive.js"></script>
+<script src="controllers/pl/catalog/view/view-course.service.js"></script>
+<script src="controllers/pl/catalog/view/view-module.service.js"></script>
+<!-- End PL Catalog -->
+
+<!-- Communities -->
+<script src="_communities/controllers/commu.config.js"></script>
+<script src="_communities/controllers/commu.controller.js"></script>
+<script src="_communities/controllers/community.config.js"></script>
+<script src="_communities/controllers/community.controller.js"></script>
+<script src="_communities/controllers/commuView.directives.js"></script>
+<script src="_communities/communities.api.js"></script>
+<script src="_communities/community.api.js"></script>
+<script src="_communities/users.api.js"></script>
+<script src="_communities/admin/community.js"></script>
+<script src="_communities/admin/admin.config.js"></script>
+<script src="_communities/admin/admin.controller.js"></script>
+<script src="_communities/admin/profile/profile.controller.js"></script>
+<script src="_communities/admin/profile/profile.directive.js"></script>
+<script src="_communities/admin/profile/banner/community-banner.api.js"></script>
+<script src="_communities/admin/profile/icons/community-icons.directive.js"></script>
+<script src="_communities/admin/profile/facilitators/list.directive.js"></script>
+<script src="_communities/admin/profile/roster/list.directive.js"></script>
+<script src="_communities/admin/registration/details.directive.js"></script>
+<script src="_communities/admin/registration/registration.api.js"></script>
+<script src="_communities/admin/registration/registration.controller.js"></script>
+<script src="_communities/admin/registration/registration.directive.js"></script>
+<script src="_communities/admin/registration/pending-requests/pending-requests.directive.js"></script>
+<script src="_communities/admin/registration/pending-requests/registration-request.js"></script>
+<script src="_communities/admin/registration/history/history.directive.js"></script>
+<script src="_communities/admin/content/content.controller.js"></script>
+<script src="_communities/admin/content/content.directive.js"></script>
+<script src="_communities/admin/content/template.api.js"></script>
+<script src="_communities/admin/content/template.controller.js"></script>
+<script src="_communities/admin/content/template.directive.js"></script>
+<script src="_communities/admin/discussion-topics/discussion-topics.controller.js"></script>
+<script src="_communities/admin/discussion-topics/discussion-topics.directive.js"></script>
+<script src="_communities/admin/discussion-topics/comments/comments.directive.js"></script>
+<script src="_communities/admin/discussion-topics/list/list.directive.js"></script>
+<script src="_communities/admin/discussion-topics/manage-topics/manage-topics.directive.js"></script>
+<script src="_communities/admin/discussion-topics/manage-topics/edit/edit.controller.js"></script>
+<script src="_communities/admin/discussion-topics/manage-topics/delete/delete.controller.js"></script>
+<script src="_communities/admin/calendar/calendar.controller.js"></script>
+<script src="_communities/admin/calendar/calendar.directive.js"></script>
+<script src="_communities/admin/resources/resources.api.js"></script>
+<script src="_communities/admin/resources/resources.controller.js"></script>
+<script src="_communities/admin/resources/resources.directive.js"></script>
+<script src="_communities/admin/view/view-modal.controller.js"></script>
+<script src="_communities/catalog/catalog.config.js"></script>
+<script src="_communities/catalog/catalog.controller.js"></script>
+<script src="_communities/view/CommunityLogsModal.controller.js"></script>
+<!-- End Communities -->
+
+
+<!-- eLearning -->
+<script src="_eLearning/controllers/_eLearning.config.js"></script>
+<script src="_eLearning/controllers/_eLearning.controller.js"></script>
+<script src="_eLearning/catalog/catalog.config.js"></script>
+<script src="_eLearning/catalog/catalog.controller.js"></script>
+<script src="_eLearning/grading/grading.config.js"></script>
+<script src="_eLearning/grading/grading.controller.js"></script>
+<script src="_eLearning/library/library.config.js"></script>
+<script src="_eLearning/library/library.controller.js"></script>
+<script src="_eLearning/view/course-view.config.js"></script>
+<script src="_eLearning/view/course-view.controller.js"></script>
+<script src="_eLearning/view/profile/profile.directive.js"></script>
+<script src="_eLearning/view/profile/profile.controller.js"></script>
+<script src="_eLearning/view/profile/existing-banners-modal.controller.js"></script>
+<script src="_eLearning/view/home/home.directive.js"></script>
+<script src="_eLearning/view/home/home.controller.js"></script>
+<script src="_eLearning/view/chat/chat.directive.js"></script>
+<script src="_eLearning/view/chat/chat.controller.js"></script>
+<script src="_eLearning/view/calendar/calendar.directive.js"></script>
+<script src="_eLearning/view/calendar/calendar.controller.js"></script>
+<script src="_eLearning/view/announcements/announcements.directive.js"></script>
+<script src="_eLearning/view/announcements/announcements.controller.js"></script>
+<script src="_eLearning/view/discussion-topics/discussions.directive.js"></script>
+<script src="_eLearning/view/discussion-topics/discussions.controller.js"></script>
+<script src="_eLearning/view/discussion-topics/edit.controller.js"></script>
+<script src="_eLearning/view/discussion-topics/comments.directive.js"></script>
+<script src="_eLearning/view/resources/resources.directive.js"></script>
+<script src="_eLearning/view/resources/resources.controller.js"></script>
+<script src="_eLearning/view/modules/modules.directive.js"></script>
+<script src="_eLearning/view/modules/modules.controller.js"></script>
+<script src="_eLearning/view/modules/modules-template.directive.js"></script>
+<script src="_eLearning/view/modules/modules-tree-view.directive.js"></script>
+<script src="_eLearning/view/modules/module-add-assignment.controller.js"></script>
+<script src="_eLearning/view/modules/module-add-discussion.controller.js"></script>
+<script src="_eLearning/view/modules/module-add-content.controller.js"></script>
+<script src="_eLearning/view/assignments/assignments.directive.js"></script>
+<script src="_eLearning/view/assignments/assignments.controller.js"></script>
+<script src="_eLearning/view/assessments/assessments.directive.js"></script>
+<script src="_eLearning/view/assessments/assessments.controller.js"></script>
+<script src="_eLearning/view/assessments/add-assessment.controller.js"></script>
+<script src="_eLearning/view/reporting/progress-tracker.directive.js"></script>
+<script src="_eLearning/view/grading/grading.directive.js"></script>
+<script src="_eLearning/view/grading/grading.controller.js"></script>
+<script src="_eLearning/view/reporting/logs-directive.js"></script>
+
+<!-- End eLearning -->
+
+<script src="controllers/pl/enroll/enroll.config.js"></script>
+<script src="controllers/pl/enroll/enroll.controller.js"></script>
+<script src="controllers/pl/grading-center/grading-center.config.js"></script>
+<script src="controllers/pl/grading-center/grading-center.controller.js"></script>
+<script src="controllers/pl/my-grades/my-grades.config.js"></script>
+<script src="controllers/pl/my-grades/my-grades.controller.js"></script>
+<script src="controllers/pl/my-grades/my-grades.api.js"></script>
+
+<script src="controllers/pl/modals/AnnouncementDeleteModalCtrl.js"></script>
+<script src="controllers/pl/modals/AnnouncementEditModalCtrl.js"></script>
+<script src="controllers/pl/PLCoursesAdminCtrls.js"></script>
+<script src="controllers/pl/PLCoursesCtrl.js"></script>
+<script src="controllers/pl/PLCoursesCtrl.js"></script>
+<script src="controllers/analyze/analyzeCtrl.js"></script>
+<script src="controllers/parent/parentCtrl.js"></script>
+<script src="controllers/teach/modals/LogModalCtrl.js"></script>
+<!--<script src="controllers/pl/PLCMAssignmentsAdminCtrls.js"></script>-->
+
+<script src="_admin/AdminCtrl.js"></script>
+<script src="controllers/fileBrowserCtrl.js"></script>
+<script src="controllers/ResourceLibraryCtrl.js"></script>
+
+
+
+<script src="directives/directives.js"></script>
+<script src="directives/calendar.js"></script>
+<script src="https://appfiles.educationincites.com/incite/js/angular.rangeSlider.js"></script>
+
+
+
+
+
+<script src="https://appfiles.educationincites.com/incite/js/angular-grid.js?ignore=notused2"></script>
+<script type="text/javascript" src="https://appfiles.educationincites.com/incite/bower_components/re-tree/re-tree.js"></script>
+<script type="text/javascript" src="https://appfiles.educationincites.com/incite/bower_components/ng-device-detector/ng-device-detector.js"></script>
+<!--<script src="js/bootstrap-select.js"></script>-->
+<script src="https://appfiles.educationincites.com/incite/js/jquery-ui-1.11.3.min.js"></script>
+<script src="https://appfiles.educationincites.com/incite/js/vendor/angular-dragdrop.min.js"></script>
+<script src="https://appfiles.educationincites.com/incite/js/jquery.easyui.min.js"></script>
+<script src="https://appfiles.educationincites.com/incite/js/owl.carousel.min.js"></script>
+<script src="https://appfiles.educationincites.com/incite/js/vendor/muuri.min.js"></script>
+<script src="https://appfiles.educationincites.com/incite/js/scanner/Utils.js" type="text/javascript"></script>
+<script src="https://appfiles.educationincites.com/incite/js/scanner/thresholder.js" type="text/javascript"></script>
+<script src="https://appfiles.educationincites.com/incite/js/scanner/bublesheet.js" type="text/javascript"></script>
+<script src="https://appfiles.educationincites.com/incite/js/scanner/opencv.js" type="text/javascript"></script>
+
+<script src="https://appfiles.educationincites.com/incite/js/require.js"></script>
+<script src="https://appfiles.educationincites.com/incite/bower_components/elasticsearch/elasticsearch.js"></script>
+<script src="https://appfiles.educationincites.com/incite/js/jspdfplugins/html2canvas.js"></script>
+<script src="https://appfiles.educationincites.com/incite/js/jspdfplugins/jspdf.debug.js"></script>
+<!--<script src="js/vendor/jsxgraphcore.js"></script>-->
+<script src="https://appfiles.educationincites.com/incite/jsxgraphcore.js"></script>
+<script src="https://appfiles.educationincites.com/incite/js/html2canvas.js"></script>
+<script src="https://appfiles.educationincites.com/incite/js/canvas2image.js"></script>
+<script src="https://appfiles.educationincites.com/incite/js/base64.min.js"></script>
+<script src="https://appfiles.educationincites.com/incite/js/vendor/jqueryt.js"></script>
+<script src="https://appfiles.educationincites.com/incite/js/angular-ui-router.js"></script>
+<script src="https://appfiles.educationincites.com/incite/js/angular-ui-tree.js"></script>
+<script src="https://appfiles.educationincites.com/incite/js/angular-draggable.js"></script>
+
+<!--<script src="js/ui-grid.min.js"></script>-->
+
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-grid/3.1.1/ui-grid.min.js"></script>-->
+<script src="https://appfiles.educationincites.com/incite/ui-grid.min.js"></script>
+<script src="https://appfiles.educationincites.com/incite/js/draggable-rows.js"></script>
+
+
+
+<script src="https://appfiles.educationincites.com/incite/js/angular-animate.js"></script>
+<script src="https://appfiles.educationincites.com/incite/js/scroll-sneak.js"></script>
+<script src="https://appfiles.educationincites.com/incite/js/highcharts.5.0.14.js"></script>
+<script src="https://appfiles.educationincites.com/incite/js/heatmap.js"></script>
+<script src="https://appfiles.educationincites.com/incite/js/highcharts-more.js"></script>
+<script src="https://appfiles.educationincites.com/incite/js/ng-file-upload-shim.min.js"></script>
+<script src="https://appfiles.educationincites.com/incite/js/ng-file-upload.min.js"></script>
+<script src="https://appfiles.educationincites.com/incite/js/jquery.easing.1.3.js"></script>
+<script src="https://appfiles.educationincites.com/incite/js/jquery.mousewheel.js"></script>
+<!-- <script src="js/vendor/fabric.js"></script> -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCyoPMw8HWSX16AE15nHvM4Zey0YRe1ykY&extension=.js"></script>
+<script src="https://appfiles.educationincites.com/incite/js/vendor/jcanvas.min.js"></script>
+<script src="https://appfiles.educationincites.com/incite/js/vendor/jcanvas-crescents.js"></script>
+<script src="https://appfiles.educationincites.com/incite/js/vendor/jcanvas-donuts.js"></script>
+<script src="https://appfiles.educationincites.com/incite/js/vendor/jcanvas-handles.js"></script>
+
+<script src="services/configService.js"></script>
+<script src="services/userSettingsService.js"></script>
+<script src="https://appfiles.educationincites.com/incite/js/zlib.js"></script>
+<script src="https://appfiles.educationincites.com/incite/js/png.js"></script>
+<script src="https://appfiles.educationincites.com/incite/js/jsTag.min.js"></script>
+<script src='https://appfiles.educationincites.com/incite/js/vendor/loading-bar.js' type="text/javascript"></script>
+<script src="https://appfiles.educationincites.com/incite/js/scripts.js"></script>
+<script type="text/javascript" src="https://appfiles.educationincites.com/incite/bower_components/ng-rollbar/ng-rollbar.min.js"></script>
+<script type="text/javascript" src="https://appfiles.educationincites.com/incite/angular-base64-upload.js"></script>
+<!-- Reports -->
+<script src="report-controllers/active-report.js"></script>
+<script src="report-controllers/district-reports.js"></script>
+<script src="report-controllers/assessment-trends.js"></script>
+<script src="report-controllers/region-reports.js"></script>
+<script src="report-controllers/school-reports.js"></script>
+<script src="report-controllers/teacher-reports.js"></script>
+<script src="report-controllers/schoolgroup-reports.js"></script>
+<script src="report-controllers/admin-analysis.js"></script>
+<script src="report-controllers/student-report.js"></script>
+<script src="report-controllers/data-extract.js"></script>
+<script src="report-controllers/incite-analytics.js"></script>
+<script src="report-controllers/schoolgroup-reports.js"></script>
+<script src="report-controllers/administration-performance.js"></script>
+<script src="report-controllers/usage-metrics.js"></script>
+
+<!-- Dashboard -->
+<script src="dashboard-controllers/widget-controller.js"></script>
+<script src="dashboard-controllers/grade-level-distribution.js"></script>
+<script src="dashboard-controllers/gender-distribution.js"></script>
+<script src="dashboard-controllers/race-distribution.js"></script>
+<script src="dashboard-controllers/summary-counts.js"></script>
+<script src="dashboard-controllers/trending-assessment-performance.js"></script>
+<script src="dashboard-controllers/grades-vs-subjects.js"></script>
+<script src="dashboard-controllers/trending-student-assessment-performance.js"></script>
+<script src="dashboard-controllers/administration-totals.js"></script>
+<script src="dashboard-controllers/trending-administration-activity.js"></script>
+<script src="dashboard-controllers/item-bank-counts.js"></script>
+<script src="dashboard-controllers/item-bank-distribution.js"></script>
+<script src="dashboard-controllers/in-progress-grades-assessments.js"></script>
+<script src="dashboard-controllers/active-testing-grades.js"></script>
+<script src="dashboard-controllers/active-testing-assessments.js"></script>
+<script src="dashboard-controllers/active-testing-category.js"></script>
+<script src="dashboard-controllers/active-testing-status.js"></script>
+<script src="dashboard-controllers/active-testing-today.js"></script>
+<script src="dashboard-controllers/active-testing-year.js"></script>
+<script src="dashboard-controllers/scanning-activity-today.js"></script>
+<script src="dashboard-controllers/finished-testing-today.js"></script>
+
+<script src="dashboard-controllers/attendance-demographic-breakdown.js"></script>
+<script src="dashboard-controllers/attendance-grade-breakdown.js"></script>
+<script src="dashboard-controllers/attendance-top-schools.js"></script>
+<script src="dashboard-controllers/attendance-bottom-schools.js"></script>
+<script src="dashboard-controllers/attendance-district-summary.js"></script>
+<script src="dashboard-controllers/discipline-school-severity-breakdown-high.js"></script>
+<script src="dashboard-controllers/discipline-school-severity-breakdown-middle.js"></script>
+<script src="dashboard-controllers/discipline-school-severity-breakdown-elementary.js"></script>
+<script src="dashboard-controllers/discipline-district-time-series.js"></script>
+<script src="dashboard-controllers/discipline-incident-action-analysis.js"></script>
+<script src="dashboard-controllers/eoc-schools-vs-subjects.js"></script>
+<script src="dashboard-controllers/eog-schools-vs-subjects.js"></script>
+
+<script src="dashboard-controllers/widget-announcements.js"></script>
+<script src="dashboard-controllers/widget-day-at-a-glance.js"></script>
+<script src="dashboard-controllers/widget-current-unit.js"></script>
+<script src="dashboard-controllers/widget-links.js"></script>
+<script src="dashboard-controllers/widget-tile-links.js"></script>
+<script src="dashboard-controllers/widget-shortcuts.js"></script>
+<script src="dashboard-controllers/widget-student-results.js"></script>
+<script src="dashboard-controllers/widget-test-results.js"></script>
+<script src="dashboard-controllers/widget-scoring-required.js"></script>
+<script src="https://appfiles.educationincites.com/incite/js/angular-idle.min.js"></script>
+
+<script src="services/zoomService.js"></script>
+<script src="services/calendarService.js"></script>
+<script src="services/linkService.js"></script>
+<script src="/js/zoom/joinZoomTestTool.js"></script>
+<script src="https://appfiles.educationincites.com/incite/js/zoom/zoomTestTool.js"></script>
+<script type="text/javascript" src="https://appfiles.educationincites.com/incite/js/vendor/froala-editor/js/angular-froala.js"></script>
+<script>
+    function filePreviewClick(url, type, originalName) {
+        if(url){
+                angular.element(document.querySelector('[ng-controller="myClassesfilePreviewController"]')).scope().refreshFile(url, type,originalName);
+            }
+        return false;
+    };
+    $(document).on('click', '#course-content-readonly a', function( event ) {
+        var href = this.href;
+        var fileName = this.innerText;
+        if(href){
+            angular.element(document.querySelector('[ng-controller="myClassesfilePreviewController"]')).scope().refreshFile(href,null,fileName);
+        }
+        return false;
+    });
+</script>
+
+<!--<link rel="stylesheet" href="css/theme.css"/>-->
+</body>
+</html>

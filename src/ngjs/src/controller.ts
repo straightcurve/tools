@@ -85,6 +85,7 @@ export default class Controller extends BaseStructure {
 
 function get_template() {
     return `
+//@ts-check
 "use strict";
 (function () {
     var 0__controller = /** @class */ (function () {

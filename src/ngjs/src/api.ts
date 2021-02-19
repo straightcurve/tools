@@ -74,6 +74,7 @@ export default class API extends BaseStructure {
 
 function get_template() {
     return `
+//@ts-check
 "use strict";
 (function () {
     var __identifier = /** @class */ (function () {
