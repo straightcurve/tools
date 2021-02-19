@@ -4,7 +4,7 @@ import rec_scan_files from "./rec_scan_files";
 
 describe("recursively scan files", () => {
     it("should accept relative path", () => {
-        let path = "../test/empty";
+        let path = "src/generator/test/empty";
 
         assert.doesNotThrow(() => rec_scan_files(path));
     });

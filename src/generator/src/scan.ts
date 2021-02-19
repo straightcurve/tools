@@ -1,9 +1,10 @@
 import fs, { statSync } from "fs";
 import { isAbsolute, join } from "path";
+import { cwd } from "process";
 
 export default function scan (dir: string): ScanResult {
     if (!isAbsolute(dir))
-        dir = join(__dirname, dir);
+        dir = join(cwd(), dir);
 
     let stat = statSync(dir);
     if (!stat.isDirectory())

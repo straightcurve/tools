@@ -11,7 +11,7 @@
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}/src/ngjs/ngjs.module.ts",
+            "program": "${workspaceFolder}/src/tree-map/tree-map.module.ts",
             "outFiles": [
                 "${workspaceFolder}/**/*.js"
             ]

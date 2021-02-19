@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/straightcurve/work-tools#readme",
   "dependencies": {
+    "cheerio": "^1.0.0-rc.5",
     "pkg": "^4.4.9"
   },
   "devDependencies": {
