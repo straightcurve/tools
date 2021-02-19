@@ -89,6 +89,6 @@ function get_template() {
     }());
 
     angular.module("app").controller("0__controllerCtrl", 0__controller);
-})());
+})();
 `.trimLeft();
 }

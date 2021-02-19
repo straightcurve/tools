@@ -2,20 +2,16 @@
 import { join } from "path";
 import { BaseStructure, BaseStructureOptions, to_camel_case } from "./structure";
 
-export interface DirectiveOptions extends BaseStructureOptions {
+export interface ComponentOptions extends BaseStructureOptions {
     path: string,
     namespace: string | null,
     version: number,
 }
 
-export default class Directive extends BaseStructure {
+export default class Component extends BaseStructure {
 
     /**
      * the name the file is going to be saved as
-     * @description
-     * the reason for this filename is for easily changing
-     * them into components when we upgrade to v1.5+
-     * @returns - `@name.component.js`
      */
     public get filename(): string {
         return `${this.name}.component.js`;
@@ -39,7 +35,7 @@ export default class Directive extends BaseStructure {
         );
     }
 
-    public static parse(args: string[]): DirectiveOptions {
+    public static parse(args: string[]): ComponentOptions {
         if (args.length < 1)
             throw new Error("Wrong number of arguments, stat 0");
 
@@ -60,20 +56,20 @@ export default class Directive extends BaseStructure {
         };
     }
 
-    public static from(args: string[]): Directive {
-        return new Directive(Directive.parse(args));
+    public static from(args: string[]): Component {
+        return new Component(Component.parse(args));
     }
 
-    constructor(args: DirectiveOptions) {
+    constructor(args: ComponentOptions) {
         super(args);
     }
 
     public get template() {
         return get_template()
             .replace(/0__namespace/g, this.namespace)
-            .replace(/__directive_capitalized/g, this.capitalized_name)
-            .replace(/__directive_camel_case/g, to_camel_case(this.name))
-            .replace(/__directive_html_path/g, this.html_path);
+            .replace(/__component_capitalized/g, this.capitalized_name)
+            .replace(/__component_camel_case/g, to_camel_case(this.name))
+            .replace(/__component_html_path/g, this.html_path);
     }
 
     /**
@@ -98,22 +94,22 @@ function get_template() {
     return `
 "use strict";
 (function () {
-    function __directive_capitalized($rootScope) {
-        var directive = {
+    function __component_capitalized($rootScope) {
+        var component = {
             restrict: "E",
             replace: true,
             scope: {
-                options: "=__directive_camel_caseOptions",
+                options: "=__component_camel_caseOptions",
             },
-            controller: "__directive_capitalizedCtrl",
-            templateUrl: "__directive_html_path",
-            controllerAs: "__directive_camel_caseCtrl",
+            controller: "__component_capitalizedCtrl",
+            templateUrl: "__component_html_path",
+            controllerAs: "__component_camel_caseCtrl",
             bindToController: true,
         };
-        return directive;
+        return component;
     }
 
-    angular.module("app").directive("__directive_camel_case", __directive_capitalized);
+    angular.module("app").directive("__component_camel_case", __component_capitalized);
 })();
 `.trimLeft();
 }

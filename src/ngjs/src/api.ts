@@ -78,6 +78,6 @@ function get_template() {
     }());
 
     angular.module("app").service("0__api", 0__api);
-})());
+})();
 `.trimLeft();
 }
