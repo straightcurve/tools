@@ -1,6 +1,6 @@
 
 import { join } from "path";
-import { BaseStructure, BaseStructureOptions } from "./structure";
+import { BaseStructure, BaseStructureOptions, capitalize, to_angular_js_identifier } from "./structure";
 
 export interface ControllerOptions extends BaseStructureOptions {
     path: string,
@@ -65,9 +65,11 @@ export default class Controller extends BaseStructure {
     }
 
     public get template() {
+        let identifier = capitalize(to_angular_js_identifier(this.folder_path, this.name));
+        
         return get_template()
             .replace(/0__namespace/g, this.namespace)
-            .replace(/0__controller/g, this.capitalized_name);
+            .replace(/0__controller/g, identifier);
     }
 
     protected compute_folder_path(path: string): string {

@@ -1,6 +1,6 @@
 
 import { join } from "path";
-import { BaseStructure, BaseStructureOptions } from "./structure";
+import { BaseStructure, BaseStructureOptions, capitalize, to_angular_js_identifier } from "./structure";
 
 export interface ServiceOptions extends BaseStructureOptions {
     path: string,
@@ -58,9 +58,11 @@ export default class Service extends BaseStructure {
     }
 
     public get template() {
+        let identifier = capitalize(to_angular_js_identifier(this.folder_path, this.name));
+
         return get_template()
             .replace(/0__namespace/g, this.namespace)
-            .replace(/0__service/g, `${this.capitalized_name}Service`);
+            .replace(/__identifier/g, `${identifier}Service`);
     }
 }
 
@@ -68,16 +70,16 @@ function get_template() {
     return `
 "use strict";
 (function () {
-    var 0__service = /** @class */ (function () {
-        function 0__service($rootScope) {
+    var __identifier = /** @class */ (function () {
+        function __identifier($rootScope) {
             //  implementation goes here
             
         }
 
-        return 0__service;
+        return __identifier;
     }());
 
-    angular.module("app").service("0__service", 0__service);
+    angular.module("app").service("__identifier", __identifier);
 })();
 `.trimLeft();
 }

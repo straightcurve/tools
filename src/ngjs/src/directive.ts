@@ -1,6 +1,6 @@
 
 import { join } from "path";
-import { BaseStructure, BaseStructureOptions, to_camel_case } from "./structure";
+import { BaseStructure, BaseStructureOptions, capitalize, to_angular_js_identifier } from "./structure";
 
 export interface DirectiveOptions extends BaseStructureOptions {
     path: string,
@@ -65,10 +65,12 @@ export default class Directive extends BaseStructure {
     }
 
     public get template() {
+        let identifier = to_angular_js_identifier(this.folder_path, this.name);
+
         return get_template()
             .replace(/0__namespace/g, this.namespace)
-            .replace(/__directive_capitalized/g, this.capitalized_name)
-            .replace(/__directive_camel_case/g, to_camel_case(this.name));
+            .replace(/__identifier_capitalized/g, capitalize(identifier))
+            .replace(/__identifier/g, identifier);
     }
 
     protected compute_folder_path(path: string): string {
@@ -80,7 +82,7 @@ function get_template() {
     return `
 "use strict";
 (function () {
-    function __directive_capitalized($rootScope) {
+    function __identifier_capitalized($rootScope) {
         var directive = {
             restrict: "A",
             scope: false,
@@ -95,7 +97,7 @@ function get_template() {
         return directive;
     }
 
-    angular.module("app").directive("__directive_camel_case", __directive_capitalized);
+    angular.module("app").directive("__identifier", __identifier_capitalized);
 })();
 `.trimLeft();
 }

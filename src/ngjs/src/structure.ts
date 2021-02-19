@@ -10,9 +10,9 @@ export default interface Structure {
 }
 
 export interface BaseStructureOptions {
-    path: string,
-    namespace: string | null,
-    version: number,
+    path: string;
+    namespace: string | null;
+    version: number;
 }
 
 export abstract class BaseStructure {
@@ -34,10 +34,7 @@ export abstract class BaseStructure {
      * (absolute path)
      */
     public get path(): string {
-        return join(
-            this.folder_path,
-            this.filename
-        );
+        return join(this.folder_path, this.filename);
     }
 
     /**
@@ -53,35 +50,26 @@ export abstract class BaseStructure {
     public abstract get template(): string;
 
     constructor(args: BaseStructureOptions) {
-        this.name = this.compute_name(args.path.slice(args.path.lastIndexOf("/") + 1));
+        this.name = this.compute_name(
+            args.path.slice(args.path.lastIndexOf("/") + 1)
+        );
         this.namespace = args.namespace || "__app";
         this.version = args.version;
         this.folder_path = this.compute_folder_path(args.path);
     }
 
     protected compute_folder_path(path: string): string {
-        if (!path.includes("/"))
-            return __dirname;
+        if (!path.includes("/")) return __dirname;
 
-        if (isAbsolute(path))
-            return path.slice(0, path.lastIndexOf("/"));
+        if (isAbsolute(path)) return path.slice(0, path.lastIndexOf("/"));
 
         return join(__dirname, path.slice(0, path.lastIndexOf("/")));
     }
 
     protected compute_name(name: string): string {
-        if (name.endsWith(".js"))
-            name = name.slice(0, name.lastIndexOf(".js"));
+        if (name.endsWith(".js")) name = name.slice(0, name.lastIndexOf(".js"));
 
         return name;
-    }
-
-    /**
-     * @returns `course-discussion-topics` => `Course-discussion-topics`
-     */
-    protected get capitalized_name(): string {
-        let name = to_camel_case(this.name);
-        return `${name[0].toUpperCase()}${name.slice(1)}`;
     }
 }
 
@@ -90,7 +78,42 @@ export abstract class BaseStructure {
  */
 export function to_camel_case(str: string): string {
     let split = str.split("-");
-    return split[0] + split.slice(1).map(s => {
-        return `${s[0].toUpperCase()}${s.slice(1)}`;
-    }).join("");
+    return (
+        split[0] +
+        split
+            .slice(1)
+            .map((s) => {
+                return `${s[0].toUpperCase()}${s.slice(1)}`;
+            })
+            .join("")
+    );
+}
+
+/**
+ * @returns `/root/hello` => `/root/hello/hello.html`
+ * @returns `/root/public/hello` => `hello/hello.html`
+ */
+export function to_angular_js_identifier(
+    folder_path: string,
+    name: string
+): string {
+    const _public = "/public/";
+
+    if (folder_path.includes(_public))
+        return to_camel_case(
+            folder_path
+                .slice(folder_path.indexOf(_public) + _public.length)
+                .replace(/\//g, "-")
+        );
+
+    let split = folder_path.split("/");
+    split = split.slice(split.length - 2);
+    return to_camel_case(split.join("-"));
+}
+
+/**
+ * @returns `course-discussion-topics` => `Course-discussion-topics`
+ */
+export function capitalize(str: string): string {
+    return `${str[0].toUpperCase()}${str.slice(1)}`;
 }

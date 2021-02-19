@@ -1,6 +1,6 @@
 
 import { join } from "path";
-import { BaseStructure, BaseStructureOptions, to_camel_case } from "./structure";
+import { BaseStructure, BaseStructureOptions, capitalize, to_angular_js_identifier } from "./structure";
 
 export interface ComponentOptions extends BaseStructureOptions {
     path: string,
@@ -65,11 +65,13 @@ export default class Component extends BaseStructure {
     }
 
     public get template() {
+        let identifier = to_angular_js_identifier(this.folder_path, this.name);
+
         return get_template()
             .replace(/0__namespace/g, this.namespace)
-            .replace(/__component_capitalized/g, this.capitalized_name)
-            .replace(/__component_camel_case/g, to_camel_case(this.name))
-            .replace(/__component_html_path/g, this.html_path);
+            .replace(/__identifier_capitalized/g, capitalize(identifier))
+            .replace(/__identifier/g, identifier)
+            .replace(/__template_path/g, this.html_path);
     }
 
     /**
@@ -94,24 +96,24 @@ function get_template() {
     return `
 "use strict";
 (function () {
-    function __component_capitalized($rootScope) {
+    function __identifier_capitalized($rootScope) {
         var component = {
             restrict: "E",
             replace: true,
             scope: {
-                options: "=__component_camel_caseOptions",
+                options: "=__identifierOptions",
 
                 //  bindings go here
             },
-            controller: "__component_capitalizedCtrl",
-            templateUrl: "__component_html_path",
-            controllerAs: "__component_camel_caseCtrl",
+            controller: "__identifier_capitalizedCtrl",
+            templateUrl: "__template_path",
+            controllerAs: "__identifierCtrl",
             bindToController: true,
         };
         return component;
     }
 
-    angular.module("app").directive("__component_camel_case", __component_capitalized);
+    angular.module("app").directive("__identifier", __identifier_capitalized);
 })();
 `.trimLeft();
 }
