@@ -1,15 +1,14 @@
 
-import { isAbsolute, join } from "path";
-import Structure from "./structure";
+import { join } from "path";
+import { BaseStructure, BaseStructureOptions } from "./structure";
 
-export interface APIOptions {
+export interface APIOptions extends BaseStructureOptions {
     path: string,
     namespace: string | null,
     version: number,
 }
 
-export default class API implements Structure {
-    public namespace: string;
+export default class API extends BaseStructure {
 
     /**
      * the name the file is going to be saved as
@@ -17,12 +16,6 @@ export default class API implements Structure {
     public get filename() {
         return `${this.name}.api.v${this.version}.js`;
     }
-
-    /**
-     * the api version
-     * @default 1
-     */
-    public version: number = 1;
 
     /**
      * destination to write the file to
@@ -34,17 +27,6 @@ export default class API implements Structure {
             this.filename
         );
     }
-
-    /**
-     * absolute path to the destination's parent folder
-     */
-    public folder_path: string;
-
-    /**
-     * e.g. filename: `course`
-     *      name: `Course`
-     */
-    public name: string;
 
     public static parse(args: string[]): APIOptions {
         if (args.length < 1)
@@ -72,26 +54,13 @@ export default class API implements Structure {
     }
 
     constructor(args: APIOptions) {
-        this.name = args.path.slice(args.path.lastIndexOf("/") + 1);
-        if (this.name.endsWith(".js"))
-            this.name = this.name.slice(0, this.name.lastIndexOf(".js"));
-
-        this.namespace = args.namespace || "__app";
-        this.version = args.version;
-        this.folder_path = this.compute_folder_path(args.path);
+        super(args);
     }
 
     public get template() {
         return get_template()
             .replace(/0__namespace/g, this.namespace)
-            .replace(/0__api/g, `${this.name}APIv${this.version}`);
-    }
-
-    private compute_folder_path(path: string) {
-        if (isAbsolute(path))
-            return path.slice(0, path.lastIndexOf("/"));
-
-        return join(__dirname, path.slice(0, path.lastIndexOf("/")));
+            .replace(/0__api/g, `${this.capitalized_name}APIv${this.version}`);
     }
 }
 
