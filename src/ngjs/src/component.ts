@@ -105,26 +105,25 @@ export default class Component extends BaseStructure {
 function get_template() {
     return `
 //@ts-check
+
 "use strict";
-(function () {
-    function __identifier_capitalized($rootScope) {
-        var component = {
-            restrict: "E",
-            replace: true,
-            scope: {
-                options: "=__identifierOptions",
+function __identifier_capitalized($rootScope) {
+    var component = {
+        restrict: "E",
+        replace: true,
+        scope: {
+            options: "=__identifierOptions",
 
-                //  bindings go here
-            },
-            controller: "__identifier_capitalizedCtrl",
-            templateUrl: "__template_path",
-            controllerAs: "__identifierCtrl",
-            bindToController: true,
-        };
-        return component;
-    }
+            //  bindings go here
+        },
+        controller: "__identifier_capitalizedCtrl",
+        templateUrl: "__template_path",
+        controllerAs: "__identifierCtrl",
+        bindToController: true,
+    };
+    return component;
+}
 
-    angular.module("app").directive("__identifier", __identifier_capitalized);
-})();
+angular.module("app").directive("__identifier", __identifier_capitalized);
 `.trimLeft();
 }

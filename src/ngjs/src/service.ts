@@ -75,18 +75,17 @@ export default class Service extends BaseStructure {
 function get_template() {
     return `
 //@ts-check
+
 "use strict";
-(function () {
-    var __identifier = /** @class */ (function () {
-        function __identifier($rootScope) {
-            //  implementation goes here
-            
-        }
+var __identifier = /** @class */ (function () {
+    function __identifier($rootScope) {
+        //  implementation goes here
+        
+    }
 
-        return __identifier;
-    }());
+    return __identifier;
+}());
 
-    angular.module("app").service("__identifier", __identifier);
-})();
+angular.module("app").service("__identifier", __identifier);
 `.trimLeft();
 }

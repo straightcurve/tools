@@ -1,6 +1,7 @@
 Features:
     ✔ Support dashes (-) in filenames @done(21-02-19 08:12)
     ☐ Support generation of routes
+    ☐ Support custom naming for generated structures
     ✔ Automate inclusion of generated structures inside index.html @done(21-02-19 20:32)
 
 Fixes:

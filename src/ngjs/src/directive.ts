@@ -87,24 +87,23 @@ export default class Directive extends BaseStructure {
 function get_template() {
     return `
 //@ts-check
+
 "use strict";
-(function () {
-    function __identifier_capitalized($rootScope) {
-        var directive = {
-            restrict: "A",
-            scope: false,
-            link: link,
-        };
+function __identifier_capitalized($rootScope) {
+    var directive = {
+        restrict: "A",
+        scope: false,
+        link: link,
+    };
 
-        function link() {
-            //  implementation goes here
-            
-        }
-
-        return directive;
+    function link() {
+        //  implementation goes here
+        
     }
 
-    angular.module("app").directive("__identifier", __identifier_capitalized);
-})();
+    return directive;
+}
+
+angular.module("app").directive("__identifier", __identifier_capitalized);
 `.trimLeft();
 }
