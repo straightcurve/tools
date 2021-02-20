@@ -8,7 +8,7 @@
     "build": "tsc",
     "generate": "npm run build && node build/generator/generator.module.js",
     "install": "npm run generate && node build/installer/installer.module.js -f ../generator/scripts.json",
-    "install-d": "npm run generate && node build/installer/installer.module.js -f ../generator/scripts.json --dangerous",
+    "install-d": "npm run generate && node build/installer/installer.module.js -f ../generator/scripts.json --dangerous"
   },
   "private": true,
   "browser": {
