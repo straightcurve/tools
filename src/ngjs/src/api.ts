@@ -75,9 +75,10 @@ export default class API extends BaseStructure {
 function get_template() {
     return `
 //@ts-check
-
 "use strict";
-var __identifier = /** @class */ (function () {
+
+let _module = "app";
+let __identifier = /** @class */ (function () {
     function __identifier($rootScope) {
         //  implementation goes here
         
@@ -86,6 +87,6 @@ var __identifier = /** @class */ (function () {
     return __identifier;
 }());
 
-angular.module("app").service("__identifier", __identifier);
+angular.module(_module).service("__identifier", __identifier);
 `.trimLeft();
 }

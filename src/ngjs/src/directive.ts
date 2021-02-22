@@ -87,8 +87,10 @@ export default class Directive extends BaseStructure {
 function get_template() {
     return `
 //@ts-check
-
 "use strict";
+
+let _module = "app";
+
 function __identifier_capitalized($rootScope) {
     var directive = {
         restrict: "A",
@@ -104,6 +106,6 @@ function __identifier_capitalized($rootScope) {
     return directive;
 }
 
-angular.module("app").directive("__identifier", __identifier_capitalized);
+angular.module(_module).directive("__identifier", __identifier_capitalized);
 `.trimLeft();
 }

@@ -86,9 +86,10 @@ export default class Controller extends BaseStructure {
 function get_template() {
     return `
 //@ts-check
-
 "use strict";
-var 0__controller = /** @class */ (function () {
+
+let _module = "app";
+let 0__controller = /** @class */ (function () {
     function 0__controller($scope) {
         //  implementation goes here
         
@@ -97,6 +98,6 @@ var 0__controller = /** @class */ (function () {
     return 0__controller;
 }());
 
-angular.module("app").controller("0__controllerCtrl", 0__controller);
+angular.module(_module).controller("0__controllerCtrl", 0__controller);
 `.trimLeft();
 }
