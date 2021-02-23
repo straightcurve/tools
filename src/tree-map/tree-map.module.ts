@@ -8,7 +8,7 @@ import { argv, cwd, exit } from "process";
 import parse, { Node } from "./src/parse";
 
 let args = argv.slice(2);
-let in_public_dir: string = configure_in_dir_path("-path", "./src/tree-map/test/attribute");
+let in_public_dir: string = configure_in_dir_path("-path", null);
 let out_tree: string = configure_out_file_path("-tree", "tree.json");
 let out_slices: string = configure_out_file_path("-slices", "slices.json");
 

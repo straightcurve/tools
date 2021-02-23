@@ -1,5 +1,5 @@
 {
-  "name": "tools",
+  "name": "sweetacid-tools",
   "version": "1.0.0",
   "description": "This repository contains scripts I made to make my life easier when working.",
   "main": "check_min_node_version.js",
@@ -7,12 +7,13 @@
     "test": "mocha -r ts-node/register src/**/*.spec.ts",
     "build": "tsc",
     "generate": "npm run build && node build/generator/generator.module.js",
-    "install": "npm run generate && node build/installer/installer.module.js -f ../generator/scripts.json",
-    "install-d": "npm run generate && node build/installer/installer.module.js -f ../generator/scripts.json --dangerous",
-    "install-d-mac": "npm run generate && node build/installer/installer.module.js -f ../generator/scripts.json --dangerous mac",
-    "install-d-win": "npm run generate && node build/installer/installer.module.js -f ../generator/scripts.json --dangerous win"
+    "installer": "npm run generate && node build/installer/installer.module.js -f ../generator/scripts.json",
+    "installer-mac": "npm run generate && node build/installer/installer.module.js -f ../generator/scripts.json",
+    "installer-win": "npm run generate && node build/installer/installer.module.js -f ../generator/scripts.json",
+    "installer-d": "npm run generate && node build/installer/installer.module.js -f ../generator/scripts.json --dangerous",
+    "installer-d-mac": "npm run generate && node build/installer/installer.module.js -f ../generator/scripts.json --dangerous mac",
+    "installer-d-win": "npm run generate && node build/installer/installer.module.js -f ../generator/scripts.json --dangerous win"
   },
-  "private": true,
   "browser": {
     "child_process": false
   },
