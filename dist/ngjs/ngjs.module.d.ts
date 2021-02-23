@@ -1,0 +1,4 @@
+/**
+ * @module ngjs
+ */
+export {};
