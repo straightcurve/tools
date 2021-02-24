@@ -1,5 +1,6 @@
 //@ts-check
 "use strict";
+
 (function () {
     var WorkToolsPublicService = /** @class */ (function () {
         function WorkToolsPublicService($rootScope) {

@@ -1,44 +1,52 @@
 {
-  "name": "@sweetacid/tools",
-  "version": "1.0.6",
-  "description": "This repository contains scripts I made to make my life easier when working.",
-  "main": "check_min_node_version.js",
-  "scripts": {
-    "test": "mocha -r ts-node/register src/**/*.spec.ts",
-    "build": "tsc",
-    "generate": "npm run build && node build/generator/generator.module.js",
-    "installer": "npm run generate && node build/installer/installer.module.js -f ../generator/scripts.json",
-    "installer-mac": "npm run generate && node build/installer/installer.module.js -f ../generator/scripts.json mac",
-    "installer-win": "npm run generate && node build/installer/installer.module.js -f ../generator/scripts.json win",
-    "installer-d": "npm run generate && node build/installer/installer.module.js -f ../generator/scripts.json --dangerous",
-    "installer-d-mac": "npm run generate && node build/installer/installer.module.js -f ../generator/scripts.json --dangerous mac",
-    "installer-d-win": "npm run generate && node build/installer/installer.module.js -f ../generator/scripts.json --dangerous win"
-  },
-  "browser": {
-    "child_process": false
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/straightcurve/work-tools.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/straightcurve/work-tools/issues"
-  },
-  "homepage": "https://github.com/straightcurve/work-tools#readme",
-  "dependencies": {
-    "cheerio": "^1.0.0-rc.5",
-    "pkg": "^4.4.9"
-  },
-  "devDependencies": {
-    "@types/chai": "^4.2.15",
-    "@types/mocha": "^8.2.1",
-    "@types/node": "^14.14.28",
-    "chai": "^4.3.0",
-    "mocha": "^8.3.0",
-    "ts-node": "^9.1.1",
-    "typescript": "^4.1.5"
-  }
+    "name": "@sweetacid/tools",
+    "version": "1.0.6",
+    "description": "This repository contains scripts I made to make my life easier when working.",
+    "main": "check_min_node_version.js",
+    "scripts": {
+        "test": "mocha -r ts-node/register src/**/*.spec.ts",
+        "build": "tsc",
+        "generate": "npm run build && node build/generator/generator.module.js",
+        "installer": "npm run generate && node build/installer/installer.module.js -f ../generator/scripts.json",
+        "installer-mac": "npm run generate && node build/installer/installer.module.js -f ../generator/scripts.json mac",
+        "installer-win": "npm run generate && node build/installer/installer.module.js -f ../generator/scripts.json win",
+        "installer-d": "npm run generate && node build/installer/installer.module.js -f ../generator/scripts.json --dangerous",
+        "installer-d-mac": "npm run generate && node build/installer/installer.module.js -f ../generator/scripts.json --dangerous mac",
+        "installer-d-win": "npm run generate && node build/installer/installer.module.js -f ../generator/scripts.json --dangerous win"
+    },
+    "browser": {
+        "child_process": false
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/straightcurve/work-tools.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/straightcurve/work-tools/issues"
+    },
+    "homepage": "https://github.com/straightcurve/work-tools#readme",
+    "dependencies": {
+        "@types/chalk": "^2.2.0",
+        "chalk": "^3.0.0",
+        "cheerio": "^1.0.0-rc.5",
+        "pkg": "^4.4.9"
+    },
+    "devDependencies": {
+        "@types/chai": "^4.2.15",
+        "@types/mocha": "^8.2.1",
+        "@types/node": "^14.14.28",
+        "chai": "^4.3.0",
+        "mocha": "^8.3.0",
+        "ts-node": "^9.1.1",
+        "typescript": "^4.1.5"
+    },
+    "files": [
+        "dist/**/*"
+    ],
+    "prepare": "npm run build",
+    "prepublishOnly": "npm test",
+    "postversion" : "git push && git push --tags"
 }

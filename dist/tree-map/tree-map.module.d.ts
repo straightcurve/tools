@@ -1,4 +1,0 @@
-/**
- * @module tree-map
- */
-export {};
