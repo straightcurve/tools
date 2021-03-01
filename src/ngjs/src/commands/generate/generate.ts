@@ -32,7 +32,7 @@ export default function generate(args: string[]): Structure[] {
     let build = builders.get(type);
     if (build === undefined)
         throw new Error(
-            `Unknown type ${type}\nSupported types: (api | component | data | directive | service)`
+            `Unknown type ${type}\nSupported types: (api | component | data | directive | modal | service)`
         );
 
     if (isAbsolute(path))

@@ -41,5 +41,6 @@ function display_help() {
         (d   | directive)
         (s   | service)
         (data)
+        (modal)
     `);
 }

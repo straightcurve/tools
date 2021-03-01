@@ -6,13 +6,13 @@
     "scripts": {
         "test": "mocha -r ts-node/register src/**/*.spec.ts",
         "build": "tsc",
-        "generate": "npm run build && node build/generator/generator.module.js",
-        "installer": "npm run generate && node build/installer/installer.module.js -f ../generator/scripts.json",
-        "installer-mac": "npm run generate && node build/installer/installer.module.js -f ../generator/scripts.json mac",
-        "installer-win": "npm run generate && node build/installer/installer.module.js -f ../generator/scripts.json win",
-        "installer-d": "npm run generate && node build/installer/installer.module.js -f ../generator/scripts.json --dangerous",
-        "installer-d-mac": "npm run generate && node build/installer/installer.module.js -f ../generator/scripts.json --dangerous mac",
-        "installer-d-win": "npm run generate && node build/installer/installer.module.js -f ../generator/scripts.json --dangerous win"
+        "generate": "npm run build && node dist/generator/generator.module.js",
+        "installer": "npm run generate && node dist/installer/installer.module.js -f ../generator/scripts.json",
+        "installer-mac": "npm run generate && node dist/installer/installer.module.js -f ../generator/scripts.json mac",
+        "installer-win": "npm run generate && node dist/installer/installer.module.js -f ../generator/scripts.json win",
+        "installer-d": "npm run generate && node dist/installer/installer.module.js -f ../generator/scripts.json --dangerous",
+        "installer-d-mac": "npm run generate && node dist/installer/installer.module.js -f ../generator/scripts.json --dangerous mac",
+        "installer-d-win": "npm run generate && node dist/installer/installer.module.js -f ../generator/scripts.json --dangerous win"
     },
     "browser": {
         "child_process": false
