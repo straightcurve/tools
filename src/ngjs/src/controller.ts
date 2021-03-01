@@ -1,7 +1,7 @@
 
 import { join } from "path";
-import Structure, { BaseStructure, BaseStructureOptions, to_angular_js_identifier } from "./structure";
-import { capitalize } from "./utils";
+import Structure, { BaseStructure, BaseStructureOptions } from "./structure";
+import ControllerTemplate from "./templates/controller";
 
 export interface ControllerOptions extends BaseStructureOptions {
     path: string,
@@ -72,33 +72,10 @@ export default class Controller extends BaseStructure {
     }
 
     public get template() {
-        let identifier = capitalize(to_angular_js_identifier(this.folder_path, this.name));
-        
-        return get_template()
-            .replace(/0__namespace/g, this.namespace)
-            .replace(/0__controller/g, identifier);
+        return ControllerTemplate.get_content(this.name);
     }
 
     protected compute_folder_path(path: string): string {
         return join(super.compute_folder_path(path), this.name);
     }
-}
-
-function get_template() {
-    return `
-//@ts-check
-"use strict";
-
-let _module = "app";
-let 0__controller = /** @class */ (function () {
-    function 0__controller($scope) {
-        //  implementation goes here
-        
-    }
-
-    return 0__controller;
-}());
-
-angular.module(_module).controller("0__controllerCtrl", 0__controller);
-`.trimLeft();
 }

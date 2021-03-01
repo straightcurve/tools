@@ -3,6 +3,7 @@ import API from "../../api";
 import Component from "../../component";
 import Data from "../../data";
 import Directive from "../../directive";
+import Modal from "../../modal";
 import Service from "../../service";
 import Structure from "../../structure";
 
@@ -15,8 +16,9 @@ builders.set("d", Data.generate);
 builders.set("data", Data.generate);
 builders.set("a", API.generate);
 builders.set("api", API.generate);
-builders.set("dir", Directive.generate);
+builders.set("d", Directive.generate);
 builders.set("directive", Directive.generate);
+builders.set("modal", Modal.generate);
 
 export default function generate(args: string[]): Structure[] {
     if (args.length < 2)

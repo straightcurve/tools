@@ -14,4 +14,5 @@ Options:
     (d   | directive)
     (s   | service)
     (data)
+    (modal)
 ```
