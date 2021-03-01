@@ -1,6 +1,6 @@
 {
     "name": "@sweetacid/tools",
-    "version": "1.2.1",
+    "version": "1.3.0",
     "description": "This repository contains scripts I made to make my life easier when working.",
     "main": "check_min_node_version.js",
     "scripts": {
