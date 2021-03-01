@@ -64,7 +64,7 @@ function display_help() {
     Usage: 
         tree-map [...options]
     Options:
-        -p          [ path ]    the relative path to the public directory (required)
+        -path       [ path ]    the relative path to the public directory (required)
         -tree       [ path ]    relative path to tree output file
         -slices     [ path ]    relative path to slices output file
     `);
