@@ -1,6 +1,7 @@
 
 import { join } from "path";
-import Structure, { BaseStructure, BaseStructureOptions, capitalize, to_angular_js_identifier } from "./structure";
+import Structure, { BaseStructure, BaseStructureOptions, to_angular_js_identifier } from "./structure";
+import { capitalize } from "./utils";
 
 export interface ControllerOptions extends BaseStructureOptions {
     path: string,

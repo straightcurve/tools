@@ -1,6 +1,7 @@
 
 import { join } from "path";
-import Structure, { BaseStructure, BaseStructureOptions, capitalize, to_angular_js_identifier } from "./structure";
+import Structure, { BaseStructure, BaseStructureOptions } from "./structure";
+import DirectiveTemplate from "./templates/directive";
 
 export interface DirectiveOptions extends BaseStructureOptions {
     path: string,
@@ -71,41 +72,10 @@ export default class Directive extends BaseStructure {
     }
 
     public get template() {
-        let identifier = to_angular_js_identifier(this.folder_path, this.name);
-
-        return get_template()
-            .replace(/0__namespace/g, this.namespace)
-            .replace(/__identifier_capitalized/g, capitalize(identifier))
-            .replace(/__identifier/g, identifier);
+        return DirectiveTemplate.get_content(this.name);
     }
 
     protected compute_folder_path(path: string): string {
         return join(super.compute_folder_path(path), this.name);
     }
-}
-
-function get_template() {
-    return `
-//@ts-check
-"use strict";
-
-let _module = "app";
-
-function __identifier_capitalized($rootScope) {
-    var directive = {
-        restrict: "A",
-        scope: false,
-        link: link,
-    };
-
-    function link() {
-        //  implementation goes here
-        
-    }
-
-    return directive;
-}
-
-angular.module(_module).directive("__identifier", __identifier_capitalized);
-`.trimLeft();
 }

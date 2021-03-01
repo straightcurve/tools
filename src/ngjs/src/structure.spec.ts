@@ -1,5 +1,6 @@
 import { assert } from "chai";
-import { capitalize, to_angular_js_identifier, to_camel_case } from "./structure";
+import { to_angular_js_identifier, to_camel_case } from "./structure";
+import { capitalize } from "./utils";
 
 describe("base structure", () => {
     it("should capitalize a string", () => {

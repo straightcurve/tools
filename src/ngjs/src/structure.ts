@@ -111,10 +111,3 @@ export function to_angular_js_identifier(
     split = split.slice(split.length - 2);
     return to_camel_case(split.join("-"));
 }
-
-/**
- * @returns `course-discussion-topics` => `Course-discussion-topics`
- */
-export function capitalize(str: string): string {
-    return `${str[0].toUpperCase()}${str.slice(1)}`;
-}

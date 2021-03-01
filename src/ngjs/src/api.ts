@@ -1,6 +1,7 @@
 
 import { join } from "path";
-import Structure, { BaseStructure, BaseStructureOptions, capitalize, to_angular_js_identifier } from "./structure";
+import Structure, { BaseStructure, BaseStructureOptions } from "./structure";
+import APITemplate from "./templates/api";
 
 export interface APIOptions extends BaseStructureOptions {
     path: string,
@@ -64,29 +65,6 @@ export default class API extends BaseStructure {
     }
 
     public get template() {
-        let identifier = capitalize(to_angular_js_identifier(this.folder_path, this.name));
-
-        return get_template()
-            .replace(/0__namespace/g, this.namespace)
-            .replace(/__identifier/g, `${identifier}APIv${this.version}`);
+        return APITemplate.get_content(this.name, this.version);
     }
-}
-
-function get_template() {
-    return `
-//@ts-check
-"use strict";
-
-let _module = "app";
-let __identifier = /** @class */ (function () {
-    function __identifier($rootScope) {
-        //  implementation goes here
-        
-    }
-
-    return __identifier;
-}());
-
-angular.module(_module).service("__identifier", __identifier);
-`.trimLeft();
 }
