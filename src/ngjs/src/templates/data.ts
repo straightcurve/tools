@@ -17,27 +17,29 @@ export default class DataTemplate {
 //@ts-check
 "use strict";
 
-var module = "app";
-var __nameData = /** @class */ (function () {
-    function __nameData($rootScope) {
-        //  implementation goes here
-        ___nameData.doSomething = doSomething;
-
-        return ___nameData;
-
-        function ___nameData() {
-
+(function () {
+    var module = "app";
+    var __nameData = /** @class */ (function () {
+        function __nameData($rootScope) {
+            //  implementation goes here
+            ___nameData.doSomething = doSomething;
+    
+            return ___nameData;
+    
+            function ___nameData() {
+    
+            }
+    
+            function doSomething() {
+                
+            }
         }
-
-        function doSomething() {
-            
-        }
-    }
-
-    return __nameData;
-}());
-
-angular.module(module).factory("__nameData", __nameData);
+    
+        return __nameData;
+    }());
+    
+    angular.module(module).factory("__nameData", __nameData);
+})();
 
 `.trimLeft();
     }

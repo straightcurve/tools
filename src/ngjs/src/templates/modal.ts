@@ -15,29 +15,31 @@ export default class ModalTemplate {
 //@ts-check
 "use strict";
 
-var module = "app";
-var __nameModalCtrl = /** @class */ (function () {
-    function __nameModalCtrl($scope) {
-        //  implementation goes here
-        
-        $scope.onCompiled = onCompiled;
-        $scope.onOpened = onOpened;
-
-        ////////////////////////
-
-        function onCompiled() {
-            //  initialization logic goes here
+(function () {
+    var module = "app";
+    var __nameModalCtrl = /** @class */ (function () {
+        function __nameModalCtrl($scope) {
+            //  implementation goes here
+            
+            $scope.onCompiled = onCompiled;
+            $scope.onOpened = onOpened;
+    
+            ////////////////////////
+    
+            function onCompiled() {
+                //  initialization logic goes here
+            }
+    
+            function onOpened() {
+                //  data initialization goes here
+            }
         }
-
-        function onOpened() {
-            //  data initialization goes here
-        }
-    }
-
-    return __nameModalCtrl;
-}());
-
-angular.module(module).controller("__nameModalCtrl", __nameModalCtrl);
+    
+        return __nameModalCtrl;
+    }());
+    
+    angular.module(module).controller("__nameModalCtrl", __nameModalCtrl);
+})();
 
 `.trimLeft();
     }

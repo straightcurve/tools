@@ -17,22 +17,24 @@ export default class ServiceTemplate {
 //@ts-check
 "use strict";
 
-var module = "app";
-var __nameService = /** @class */ (function () {
-    function __nameService($rootScope) {
-        //  implementation goes here
-        
-        this.doSomething = doSomething;
-
-        function doSomething() {
+(function () {
+    var module = "app";
+    var __nameService = /** @class */ (function () {
+        function __nameService($rootScope) {
+            //  implementation goes here
             
+            this.doSomething = doSomething;
+    
+            function doSomething() {
+                
+            }
         }
-    }
-
-    return __nameService;
-}());
-
-angular.module(module).service("__nameService", __nameService);
+    
+        return __nameService;
+    }());
+    
+    angular.module(module).service("__nameService", __nameService);
+})();
 
 `.trimLeft();
     }

@@ -17,24 +17,26 @@ export default class ControllerTemplate {
 //@ts-check
 "use strict";
 
-var module = "app";
-var __nameCtrl = /** @class */ (function () {
-    function __nameCtrl($rootScope) {
-        //  implementation goes here
-        
-        activate();
-
-        ////////////////////////
-
-        function activate() {
+(function () {
+    var module = "app";
+    var __nameCtrl = /** @class */ (function () {
+        function __nameCtrl($rootScope) {
+            //  implementation goes here
             
+            activate();
+    
+            ////////////////////////
+    
+            function activate() {
+                
+            }
         }
-    }
-
-    return __nameCtrl;
-}());
-
-angular.module(module).controller("__nameCtrl", __nameCtrl);
+    
+        return __nameCtrl;
+    }());
+    
+    angular.module(module).controller("__nameCtrl", __nameCtrl);
+})();
 
 `.trimLeft();
     }

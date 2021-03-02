@@ -17,37 +17,39 @@ export default class APITemplate {
 //@ts-check
 "use strict";
 
-var module = "app";
-var __name = /** @class */ (function () {
-    function __name($rootScope) {
-        //  implementation goes here
-        
-        this.create = create;
-        this.get = get;
-        this.update = update;
-        this.delete = delete_;
-
-        function create() {
+(function () {
+    var module = "app";
+    var __name = /** @class */ (function () {
+        function __name($rootScope) {
+            //  implementation goes here
             
+            this.create = create;
+            this.get = get;
+            this.update = update;
+            this.delete = delete_;
+    
+            function create() {
+                
+            }
+    
+            function get() {
+                
+            }
+    
+            function update() {
+                
+            }
+    
+            function delete_() {
+                
+            }
         }
-
-        function get() {
-            
-        }
-
-        function update() {
-            
-        }
-
-        function delete_() {
-            
-        }
-    }
-
-    return __name;
-}());
-
-angular.module(module).service("__name", __name);
+    
+        return __name;
+    }());
+    
+    angular.module(module).service("__name", __name);
+})();
 
 `.trimLeft();
     }

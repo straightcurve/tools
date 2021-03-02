@@ -18,24 +18,26 @@ export default class DirectiveTemplate {
 //@ts-check
 "use strict";
 
-/**
- * the module that will contain this directive
-*/
-var module = "app";
-var directive = {
-    selector: \`__selector\`,
-    link: function (
-        scope,
-        elem,
-        attrs
-    ) {
-
-    },
-};
-
-angular
-    .module(module)
-    .directive(to_camel_case(directive.selector), () => bootstrap_directive(directive));
+(function () {
+    /**
+     * the module that will contain this directive
+    */
+    var module = "app";
+    var directive = {
+        selector: \`__selector\`,
+        link: function (
+            scope,
+            elem,
+            attrs
+        ) {
+    
+        },
+    };
+    
+    angular
+        .module(module)
+        .directive(to_camel_case(directive.selector), () => bootstrap_directive(directive));
+})();
 
 `.trimLeft();
     }
