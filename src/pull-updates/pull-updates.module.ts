@@ -33,7 +33,7 @@ function pull_from_cwd() {
 
     try {
         execSync(command, {cwd: process.cwd()});
-    } catch (ex) {
+    } catch (ex: any) {
         if (ex.message.includes(`error: pathspec '${branch}' did not match any file(s) known to git`))
             console.log(chalk.red(`[ FAILED ] Branch doesn't exist: ${branch}`));
 
@@ -64,7 +64,7 @@ function pull_multiple() {
 
         try {
             execSync(command, {cwd: process.cwd()});
-        } catch (ex) {
+        } catch (ex: any) {
             has_failed = true;
 
             if (ex.message.includes(`error: pathspec '${branch}' did not match any file(s) known to git`))
